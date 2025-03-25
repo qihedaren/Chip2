@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Sales Chip Brands</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a0505;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgb(255, 217, 0);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            color: purple;
+            text-decoration: none;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: purple;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: yellow;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .brand-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .brand-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .brand-info {
+            margin-top: 1rem;
+        }
+
+        .brand-name {
+            color: yellow;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-stats {
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        .market-share {
+            font-size: 2rem;
+            color: #ff6b6b;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .brands-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="chip.html" class="back-button">← Back to Home</a>
+    </header>
+
+    <main>
+        <h1>Best-Selling Chip Brands Worldwide</h1>
+        
+        <div class="brands-grid">
+            <div class="brand-card">
+                <img src="lays-logo.png" alt="Lay's" class="brand-logo">
+                <div class="brand-info">
+                    <h2 class="brand-name">Lay's</h2>
+                    <p class="market-share">28.5%</p>
+                    <p class="brand-stats">Global Market Share</p>
+                    <p>Present in over 200 countries</p>
+                    <p>Annual Revenue: $27 billion</p>
+                </div>
+            </div>
+
+            <div class="brand-card">
+                <img src="doritos-logo.png" alt="Doritos" class="brand-logo">
+                <div class="brand-info">
+                    <h2 class="brand-name">Doritos</h2>
+                    <p class="market-share">15.2%</p>
+                    <p class="brand-stats">Global Market Share</p>
+                    <p>Present in 150+ countries</p>
+                    <p>Annual Revenue: $12 billion</p>
+                </div>
+            </div>
+
+            <!-- Add more brand cards as needed -->
+        </div>
+    </main>
+</body>
+</html>

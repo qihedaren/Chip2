@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIPS!!!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header styles */
+        header {
+            background-color: rgb(255, 217, 0);
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 80px;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(assets/logo3.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            text-indent: -9999px;
+        }
+
+        header nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
+
+        header ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        header a {
+            color: purple;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        header a:hover {
+            background-color: purple;
+            color: white;
+        }
+
+        /* Main content styles */
+        main {
+            margin-top: 80px;
+        }
+
+        /* ... existing code ... */
+
+        /* Sharing section */
+        .sharing {
+            min-height: 100vh;
+            background-image: url(assets/bg2.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sharing h2 {
+            font-size: 80px;  /* Increased font size */
+            color: #0066ff;   /* Bright blue color */
+            margin-bottom: 40px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Optional: adds slight shadow for better visibility */
+        }
+
+        .sharing p {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+/* ... rest of existing code ... */
+
+        .sharing nav {
+            margin-top: 40px;
+        }
+
+        .sharing ul {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            list-style: none;
+        }
+
+        .sharing a {
+            color: aqua;
+            text-decoration: none;
+            border: 3px solid aqua;
+            padding: 20px;
+            font-size: 24px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .sharing a:hover {
+            background-color: aqua;
+            color: white;
+        }
+
+        /* Brands section */
+        .brands {
+            min-height: 100vh;
+            background-color: rgba(109, 22, 22, 0.936);
+            background-image: url(assets/brandsbg1.webp);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: darken;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .brands h2 {
+            font-size: 60px;
+            color: yellow;
+            margin-bottom: 40px;
+        }
+
+        .brands p {
+            font-size: 24px;
+            color: yellow;
+            margin-bottom: 40px;
+        }
+
+        .brands nav {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        .brands a {
+            color: white;
+            text-decoration: none;
+            border: 3px solid white;
+            padding: 20px;
+            font-size: 24px;
+            display: block;
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .brands a:hover {
+            background-color: white;
+            color: rgba(109, 22, 22, 0.936);
+        }
+
+        /* Facts section */
+        .facts {
+            min-height: 100vh;
+            background-color: #0066cc;
+            background-image: url(assets/factsbg1.webp);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: darken;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .facts h2 {
+            font-size: 60px;
+            color: #ff6600;
+            margin-bottom: 40px;
+        }
+
+        .facts p {
+            font-size: 24px;
+            color: yellow;
+            margin-bottom: 40px;
+        }
+
+        .facts ul {
+            list-style: none;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .facts a {
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            font-size: 20px;
+            display: block;
+            margin: 10px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .facts a:hover {
+            border-bottom-color: white;
+            color: #ff6600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                padding: 10px;
+                flex-direction: column;
+            }
+
+            .logo-container {
+                margin: 0 auto;
+            }
+
+            header nav {
+                padding-right: 0;
+            }
+
+            header ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .sharing h2,
+            .brands h2,
+            .facts h2 {
+                font-size: 40px;
+            }
+
+            .sharing p,
+            .brands p,
+            .facts p {
+                font-size: 18px;
+            }
+
+            .sharing ul {
+                grid-template-columns: 1fr;
+            }
+
+            .sharing a,
+            .brands a {
+                padding: 15px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>CHIPS!!!</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#champion">CHAMPION</a></li>
+                <li><a href="#flop">BIG FLOP</a></li>
+                <li><a href="#bizarre">MOST BIZARRE</a></li>
+                <li><a href="#giants">CHIP GIANTS</a></li>
+                <li><a href="#facts">FUN FACTS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="sharing">
+            <h2>Pick Your Choice!</h2>
+            <p>- what's your "the-one" chip?</p>
+            <p>- what flavour do you hate the most?</p>
+            <p>- share your opinions of chips with the other chip enthusiasts!</p>
+            <p>- see how many people in the world have the same feeling with you!</p>
+            <nav>
+                <ul>
+                    <li><a href="champion.html">CHAMPION</a></li>
+                    <li><a href="bigflop.html">BIG FLOP</a></li>
+                    <li><a href="bizarre.html">MOST BIZARRE</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="brands">
+            <h2>CHIPS GIANTS IN THE WORLD</h2>
+            <p>- Who are they?</p>
+            <nav>
+                <a href="bestsales.html">BEST SALES CHIP BRANDS</a>
+                <a href="globalmap.html">Global Chips Markets Map</a>
+            </nav>
+        </section>
+
+        <section class="facts">
+            <h2>FUN FACTS!</h2>
+            <p>Things that you would not imagine about Chips...</p>
+            <nav>
+                <ul>
+                    <li><a href="curved-chips.html">Why are Canned potato chips curved?</a></li>
+                    <li><a href="chips-history.html">How are Chips invented?</a></li>
+                    <li><a href="chips-earth.html">If we connect all the sold potato chip bags end to end, how many times could they circle the Earth?</a></li>
+                    <li><a href="more-facts.html">to be continued...</a></li>
+                </ul>
+            </nav>
+        </section>
+        
+    </main>
+    <footer>Created by YX.Z ML.Z YT.O</footer>
+</body>
+</html>

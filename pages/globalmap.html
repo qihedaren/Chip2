@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Chips Markets Map</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a0505;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgb(255, 217, 0);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            color: purple;
+            text-decoration: none;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: purple;
+            color: white;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: yellow;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .map-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .world-map {
+            width: 100%;
+            height: 600px;
+            background-color: #2a0a0a;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .region-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .region-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .region-name {
+            color: yellow;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .region-data {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .top-brand {
+            color: #ff6b6b;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .region-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="chip.html" class="back-button">← Back to Home</a>
+    </header>
+
+    <main>
+        <h1>Global Chips Market Distribution</h1>
+        
+        <div class="map-container">
+            <div class="world-map">
+                <!-- Add your interactive map here -->
+                <!-- You might want to use a mapping library like Leaflet or Google Maps -->
+            </div>
+
+            <div class="region-stats">
+                <div class="region-card">
+                    <h2 class="region-name">North America</h2>
+                    <p class="region-data">Market Share: 35%</p>
+                    <p class="region-data">Annual Revenue: $30B</p>
+                    <p class="top-brand">Top Brand: Lay's</p>
+                </div>
+
+                <div class="region-card">
+                    <h2 class="region-name">Europe</h2>
+                    <p class="region-data">Market Share: 28%</p>
+                    <p class="region-data">Annual Revenue: $25B</p>
+                    <p class="top-brand">Top Brand: Pringles</p>
+                </div>
+
+                <!-- Add more region cards -->
+            </div>
+        </div>
+    </main>
+</body>
+</html>

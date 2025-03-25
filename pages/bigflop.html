@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Flop Chips</title>
+    <!-- Use same style as champion.html but change primary color to #ff4444 -->
+    <style>
+        /* Copy styles from champion.html and change #0066ff to #ff4444 */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>CHIPS!!!</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="champion.html">CHAMPION</a></li>
+                <li><a href="bigflop.html">BIG FLOP</a></li>
+                <li><a href="bizarre.html">MOST BIZARRE</a></li>
+                <li><a href="bestsales.html">CHIP GIANTS</a></li>
+                <li><a href="curved-chips.html">FUN FACTS</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <header>
+        <a href="chip.html" class="back-button">← Back to Home</a>
+    </header>
+
+    <style>
+        header {
+            background-color: rgb(255, 217, 0);
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+    
+        .logo-container {
+            width: 200px;
+            height: 80px;
+            position: relative;
+            margin-left: 20px;
+        }
+    
+        .logo-container h1 {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(logo3.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            text-indent: -9999px;
+        }
+    
+        header nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
+    
+        header ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        header a {
+            color: purple;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: block;
+        }
+    
+        header a:hover {
+            background-color: purple;
+            color: white;
+        }
+    
+        /* Add margin-top to main content to account for fixed header */
+        main {
+            margin-top: 80px;
+        }
+    
+        /* Media query for responsive design */
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                padding: 10px;
+                flex-direction: column;
+            }
+    
+            .logo-container {
+                margin: 0 auto;
+            }
+    
+            header nav {
+                padding-right: 0;
+            }
+    
+            header ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    
+            main {
+                margin-top: 160px; /* Adjust based on header height in mobile view */
+            }
+        }
+    </style>
+
+    <main>
+        <section class="champion-section">
+            <h1>Big Flop Chips</h1>
+            <p>Vote for the chips you think are the worst!</p>
+
+            <div class="voting-section">
+                <!-- Similar structure to champion.html but with different chips -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>

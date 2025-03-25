@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why are Chips Curved? - Fun Facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0066cc;
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgb(255, 217, 0);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            color: purple;
+            text-decoration: none;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: purple;
+            color: white;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .fact-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        h1 {
+            color: #ff6600;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .fact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .fact-text {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .fact-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .fun-fact-box {
+            background-color: rgba(255, 102, 0, 0.2);
+            border-left: 4px solid #ff6600;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: white;
+            color: #0066cc;
+        }
+
+        @media (max-width: 768px) {
+            .fact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="chip.html" class="back-button">← Back to Home</a>
+    </header>
+
+    <main>
+        <div class="fact-container">
+            <h1>Why are Canned Potato Chips Curved?</h1>
+            
+            <div class="fact-content">
+                <div class="fact-text">
+                    <p>The distinctive curve of potato chips isn't just for style - it's actually a result of the manufacturing process! Here's why:</p>
+                    
+                    <div class="fun-fact-box">
+                        <p>When potatoes are sliced and fried, the moisture difference between the top and bottom surfaces causes the slice to curl naturally.</p>
+                    </div>
+
+                    <p>The science behind it:</p>
+                    <ul>
+                        <li>The top surface loses moisture faster than the bottom</li>
+                        <li>This creates tension in the potato slice</li>
+                        <li>The tension causes the slice to curve upward</li>
+                        <li>The curve is then "locked in" during the frying process</li>
+                    </ul>
+                </div>
+                <img src="curved-chips.jpg" alt="Curved Potato Chips" class="fact-image">
+            </div>
+
+            <div class="navigation">
+                <a href="chip.html" class="nav-button">Back to Facts</a>
+                <a href="chips-history.html" class="nav-button">Next Fact →</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
