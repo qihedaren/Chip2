@@ -3,182 +3,831 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Flop Chips</title>
+  <title>Biggest Chip Flops - Vote for the Worst!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-
+    :root {
+      --primary: #ff9800;
+      --secondary: #f44336;
+      --dark: #333;
+      --light: #f5f5f5;
+      --accent: #2196f3;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffeb3b;
+      color: var(--dark);
+    }
+    
         header {
-            background-color: rgb(255, 217, 0);
-            padding: 1rem;
+      background-color: var(--primary);
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .back-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      color: var(--dark);
+      text-decoration: none;
+      border: 2px solid var(--dark);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      background-color: var(--dark);
+      color: var(--light);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .intro {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .chip-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .chip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .chip-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+    }
+    
+    .chip-image img {
+            width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+    }
+    
+    .chip-content {
+      padding: 1.5rem;
+    }
+    
+    .chip-name {
+      font-size: 1.5rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--dark);
+    }
+    
+    .chip-description {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    
+    .votes {
             display: flex;
             align-items: center;
-        }
-
-        .back-button {
-            color: purple;
-            text-decoration: none;
-            border: 2px solid purple;
-            padding: 8px 16px;
-            border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    
+    .vote-count {
+      font-weight: bold;
+      margin-left: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .vote-bar {
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 0.5rem 0 1rem 0;
+    }
+    
+    .vote-fill {
+      height: 100%;
+      background-color: var(--primary);
+    }
+    
+    .vote-button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    
+    .vote-button:hover {
+      background-color: #0b7dda;
+    }
+    
+    .add-section {
+      background-color: #f5f5f5;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    
+    .form-control {
+            width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    
+    .submit-button {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .tabs {
+            display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 2rem;
+    }
+    
+    .tab {
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
+    }
+    
+    .tab:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .tab.active {
+      border-bottom: 3px solid var(--accent);
+      font-weight: bold;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+            display: block;
         }
-
-        .back-button:hover {
-            background-color: purple;
-            color: white;
+    
+    .chart-container {
+      margin: 2rem 0;
+      height: 300px;
+    }
+    
+    .hall-of-shame {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hall-item {
+      display: flex;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 2rem;
+    }
+    
+    .hall-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      margin-right: 2rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
+    }
+    
+    .hall-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+                padding: 10px;
+    }
+    
+    .hall-content {
+      flex: 1;
+    }
+    
+    .decade-section {
+      margin-bottom: 3rem;
+    }
+    
+    .decade-title {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .company-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .company-logo {
+      width: 100px;
+      height: 100px;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+      margin: 0 auto 1rem auto;
+    }
+    
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
         }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .voting-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            color: #0066ff;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .voting-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .chip-card {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            border-radius: 8px;
-            background-color: white;
-            transition: transform 0.2s;
-        }
-
-        .chip-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .chip-info {
-            margin-top: 1rem;
-        }
-
-        .chip-info h2 {
-            color: #0066ff;
-            margin-bottom: 0.5rem;
-        }
-
-        .chip-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .vote-button {
-            background-color: #0066ff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .vote-button:hover {
-            background-color: #0052cc;
-        }
-
-        .votes-count {
-            font-weight: bold;
-            color: #0066ff;
+    
+    .submitted-chips {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #ddd;
+    }
+    
+    .submitted-chip {
+      background-color: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .submitted-chip h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .submitted-chip p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .submission-date {
+      font-size: 0.9rem;
+      color: #666;
+      font-style: italic;
         }
     </style>
 </head>
 <body>
-    <header>
-        <a href="../index.html" class="back-button">← Back to Home</a>
-    </header>
-
-    <main>
-        <div class="voting-container">
-            <h1>Biggest Chip Flops</h1>
-            <p>Vote for the chips that you think were the biggest market failures!</p>
-
-            <div class="voting-grid">
-                <div class="chip-card" data-id="1">
-                    <h2>Lay's Limon</h2>
-                    <p>Too sour and artificial tasting</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
-                    </div>
-                </div>
-
-                <div class="chip-card" data-id="2">
-                    <h2>Doritos 3D Crunch</h2>
-                    <p>Discontinued due to poor sales</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
-                    </div>
-                </div>
-
-                <div class="chip-card" data-id="3">
-                    <h2>Pringles Rice</h2>
-                    <p>Failed to capture the original Pringles magic</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
-                    </div>
-                </div>
+  <header>
+    <a href="../index.html" class="back-button">← Back to Home</a>
+  </header>
+  
+  <div class="container">
+    <h1>Biggest Chip Flops</h1>
+    
+    <div class="intro">
+      <p>Vote for the chips that you think were the biggest market failures! Share your memories and discover forgotten snack disasters.</p>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('all-flops')">All Flops</div>
+      <div class="tab" onclick="switchTab('by-decade')">By Decade</div>
+      <div class="tab" onclick="switchTab('hall-of-shame')">Hall of Shame</div>
+    </div>
+    
+    <div id="all-flops" class="tab-content active">
+      <div class="grid">
+        <div class="chip-card">
+          <div class="chip-image">
+            <img src="../assets/bigflop images/Doritos 3D Crunch.png" alt="Doritos 3D Crunch">
+          </div>
+          <div class="chip-content">
+            <h3 class="chip-name">Doritos 3D Crunch</h3>
+            <p class="chip-description">A failed attempt to bring back the beloved 3D Doritos with a new recipe that just didn't measure up.</p>
+            <div class="votes">
+              <span class="vote-count" id="doritos-votes">0</span> votes
             </div>
+            <div class="vote-bar">
+              <div class="vote-fill" id="doritos-bar" style="width: 0%"></div>
+            </div>
+            <button class="vote-button" onclick="vote('doritos')">Vote</button>
+          </div>
         </div>
-    </main>
+        
+        <div class="chip-card">
+          <div class="chip-image">
+            <img src="../assets/bigflop images/Lay's Limon.webp" alt="Lay's Limon">
+          </div>
+          <div class="chip-content">
+            <h3 class="chip-name">Lay's Limon</h3>
+            <p class="chip-description">A controversial flavor that divided fans with its intense citrus taste.</p>
+            <div class="votes">
+              <span class="vote-count" id="lays-votes">0</span> votes
+            </div>
+            <div class="vote-bar">
+              <div class="vote-fill" id="lays-bar" style="width: 0%"></div>
+            </div>
+            <button class="vote-button" onclick="vote('lays')">Vote</button>
+          </div>
+        </div>
+        
+        <div class="chip-card">
+          <div class="chip-image">
+            <img src="../assets/bigflop images/Pringles Rice.png" alt="Pringles Rice">
+          </div>
+          <div class="chip-content">
+            <h3 class="chip-name">Pringles Rice</h3>
+            <p class="chip-description">An attempt to create a rice-based version that failed to capture the classic Pringles magic.</p>
+            <div class="votes">
+              <span class="vote-count" id="pringles-votes">0</span> votes
+            </div>
+            <div class="vote-bar">
+              <div class="vote-fill" id="pringles-bar" style="width: 0%"></div>
+            </div>
+            <button class="vote-button" onclick="vote('pringles')">Vote</button>
+          </div>
+        </div>
+        
+        <div class="chip-card">
+          <div class="chip-image">
+            <img src="../assets/bigflop images/Tato Skins.png" alt="Tato Skins">
+          </div>
+          <div class="chip-content">
+            <h3 class="chip-name">Tato Skins</h3>
+            <p class="chip-description">A short-lived product that tried to combine potato skins with chips but didn't quite work.</p>
+            <div class="votes">
+              <span class="vote-count" id="tato-votes">0</span> votes
+            </div>
+            <div class="vote-bar">
+              <div class="vote-fill" id="tato-bar" style="width: 0%"></div>
+            </div>
+            <button class="vote-button" onclick="vote('tato')">Vote</button>
+          </div>
+        </div>
+        
+        <div class="chip-card">
+          <div class="chip-image">
+            <img src="../assets/bigflop images/Cheetos Checkers.webp" alt="Cheetos Checkers">
+          </div>
+          <div class="chip-content">
+            <h3 class="chip-name">Cheetos Checkers</h3>
+            <p class="chip-description">A board game-inspired snack that didn't quite capture the fun of either activity.</p>
+            <div class="votes">
+              <span class="vote-count" id="cheetos-votes">0</span> votes
+            </div>
+            <div class="vote-bar">
+              <div class="vote-fill" id="cheetos-bar" style="width: 0%"></div>
+            </div>
+            <button class="vote-button" onclick="vote('cheetos')">Vote</button>
+          </div>
+        </div>
+        
+        <div class="chip-card">
+          <div class="chip-image">
+            <img src="../assets/bigflop images/WOW! Chips.webp" alt="WOW! Chips">
+          </div>
+          <div class="chip-content">
+            <h3 class="chip-name">WOW! Chips</h3>
+            <p class="chip-description">A low-fat version that sacrificed taste for health benefits, leading to disappointing sales.</p>
+            <div class="votes">
+              <span class="vote-count" id="wow-votes">0</span> votes
+            </div>
+            <div class="vote-bar">
+              <div class="vote-fill" id="wow-bar" style="width: 0%"></div>
+            </div>
+            <button class="vote-button" onclick="vote('wow')">Vote</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="by-decade" class="tab-content">
+      <div class="decade-section">
+        <h2 class="decade-title">1980s Flops</h2>
+        <div class="grid">
+          <div class="chip-card">
+            <div class="chip-image">
+              <img src="../assets/bigflop images/Tato Skins.png" alt="Tato Skins">
+            </div>
+            <div class="chip-content">
+              <h3 class="chip-name">Tato Skins</h3>
+              <p class="chip-description">Once popular, this potato chip brand couldn't maintain momentum and faded into snack history.</p>
+              <div class="votes">
+                <span>Votes:</span>
+                <span class="vote-count" id="tato-votes">4</span>
+              </div>
+              <div class="vote-bar">
+                <div class="vote-fill" id="tato-bar" style="width: 0%"></div>
+              </div>
+              <button class="vote-button" onclick="vote('tato')">Vote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="decade-section">
+        <h2 class="decade-title">1990s Flops</h2>
+        <div class="grid">
+          <div class="chip-card">
+            <div class="chip-image">
+              <img src="../assets/bigflop images/Cheetos Checkers.webp" alt="Cheetos Checkers">
+            </div>
+            <div class="chip-content">
+              <h3 class="chip-name">Cheetos Checkers</h3>
+              <p class="chip-description">The grid pattern couldn't compete with classic Cheetos. Launched in the 90s and quietly disappeared.</p>
+              <div class="votes">
+                <span>Votes:</span>
+                <span class="vote-count" id="cheetos-votes">4</span>
+              </div>
+              <div class="vote-bar">
+                <div class="vote-fill" id="cheetos-bar" style="width: 0%"></div>
+              </div>
+              <button class="vote-button" onclick="vote('cheetos')">Vote</button>
+            </div>
+          </div>
+          
+          <div class="chip-card">
+            <div class="chip-image">
+              <img src="../assets/bigflop images/WOW! Chips.webp" alt="WOW! Chips">
+            </div>
+            <div class="chip-content">
+              <h3 class="chip-name">WOW! Chips</h3>
+              <p class="chip-description">Olestra-based chips that caused digestive issues with infamous "may cause anal leakage" warning label.</p>
+              <div class="votes">
+                <span>Votes:</span>
+                <span class="vote-count" id="wow-votes">4</span>
+              </div>
+              <div class="vote-bar">
+                <div class="vote-fill" id="wow-bar" style="width: 0%"></div>
+              </div>
+              <button class="vote-button" onclick="vote('wow')">Vote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="decade-section">
+        <h2 class="decade-title">2000s Flops</h2>
+        <div class="grid">
+          <div class="chip-card">
+            <div class="chip-image">
+              <img src="../assets/bigflop images/Lay's Limon.webp" alt="Lay's Limon">
+            </div>
+            <div class="chip-content">
+              <h3 class="chip-name">Lay's Limon</h3>
+              <p class="chip-description">Too sour and artificial tasting. Launched in 2002 and quickly disappeared from shelves.</p>
+              <div class="votes">
+                <span>Votes:</span>
+                <span class="vote-count" id="lays-votes">7</span>
+              </div>
+              <div class="vote-bar">
+                <div class="vote-fill" id="lays-bar" style="width: 0%"></div>
+              </div>
+              <button class="vote-button" onclick="vote('lays')">Vote</button>
+            </div>
+          </div>
+          
+          <div class="chip-card">
+            <div class="chip-image">
+              <img src="../assets/bigflop images/Pringles Rice.png" alt="Pringles Rice">
+            </div>
+            <div class="chip-content">
+              <h3 class="chip-name">Pringles Rice</h3>
+              <p class="chip-description">Failed to capture the original Pringles magic. The texture was off and the flavors didn't resonate with fans.</p>
+              <div class="votes">
+                <span>Votes:</span>
+                <span class="vote-count" id="pringles-votes">2</span>
+              </div>
+              <div class="vote-bar">
+                <div class="vote-fill" id="pringles-bar" style="width: 0%"></div>
+              </div>
+              <button class="vote-button" onclick="vote('pringles')">Vote</button>
+            </div>
+          </div>
+          
+          <div class="chip-card">
+            <div class="chip-image">
+              <img src="../assets/bigflop images/Doritos 3D Crunch.png" alt="Doritos 3D Crunch">
+            </div>
+            <div class="chip-content">
+              <h3 class="chip-name">Doritos 3D Crunch</h3>
+              <p class="chip-description">Discontinued due to poor sales despite innovative shape. The 2000s version failed to capture consumer interest.</p>
+              <div class="votes">
+                <span>Votes:</span>
+                <span class="vote-count" id="doritos-votes">3</span>
+              </div>
+              <div class="vote-bar">
+                <div class="vote-fill" id="doritos-bar" style="width: 0%"></div>
+              </div>
+              <button class="vote-button" onclick="vote('doritos')">Vote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="hall-of-shame" class="tab-content">
+      <div class="hall-of-shame">
+        <h2>The Ultimate Failed Chips</h2>
+        <p>These products earned their place in the Hall of Shame through spectacular failures, odd marketing decisions, or memorably bad taste.</p>
+        
+        <div class="hall-item">
+          <div class="hall-image">
+            <img src="../assets/bigflop images/WOW! Chips.webp" alt="WOW! Chips">
+          </div>
+          <div class="hall-content">
+            <h3>WOW! Chips (1998)</h3>
+            <p>The infamous olestra chips that promised fat-free snacking but delivered unexpected and embarrassing side effects. The FDA required these chips to carry a warning label about "anal leakage" and other digestive issues.</p>
+            <p>Despite initial strong sales, consumer complaints and jokes on late-night TV led to their demise. Frito-Lay eventually rebranded them as "Light" chips with a reformulated recipe.</p>
+            <p><strong>Why it failed:</strong> Medical side effects, negative publicity, and becoming the butt of jokes (pun intended).</p>
+            <div class="votes">
+              <span>Hall of Shame Votes: 256</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hall-item">
+          <div class="hall-image">
+            <img src="../assets/bigflop images/Lay's Limon.webp" alt="Lay's Limon">
+          </div>
+          <div class="hall-content">
+            <h3>Lay's Limon (2002)</h3>
+            <p>Lay's attempt to capture the Hispanic market with a lime-flavored chip that missed the mark entirely. Instead of the authentic lime flavor consumers expected, these chips tasted intensely artificial and overly sour.</p>
+            <p>Despite heavy marketing, they quickly disappeared from shelves. The failure was particularly notable because lime-flavored chips from smaller brands were successful at the same time.</p>
+            <p><strong>Why it failed:</strong> Poor flavor execution, artificial taste, and failing to understand the target market's preference for authentic flavors.</p>
+            <div class="votes">
+              <span>Hall of Shame Votes: 127</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="add-section">
+      <h2>Submit Your Own Chip Flop</h2>
+      <p>Remember a failed chip that's not on our list? Tell us about it!</p>
+      
+      <form>
+        <div class="form-group">
+          <label for="chip-name">Chip Name</label>
+          <input type="text" id="chip-name" class="form-control" placeholder="e.g. Cheetos X-treme" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="chip-year">Approximate Year/Decade</label>
+          <input type="text" id="chip-year" class="form-control" placeholder="e.g. Late 90s" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="chip-description">Why Was It a Flop?</label>
+          <textarea id="chip-description" class="form-control" rows="4" placeholder="Tell us what made this chip a failure..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="chip-memory">Your Memory</label>
+          <textarea id="chip-memory" class="form-control" rows="4" placeholder="Share your personal memory or experience with this chip..." required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-button">Submit Chip Flop</button>
+      </form>
 
-    <script>
-        // Initialize votes from localStorage or default to 0
-        const votes = JSON.parse(localStorage.getItem('bigFlopVotes')) || {
-            '1': 0,
-            '2': 0,
-            '3': 0
-        };
+      <div id="submitted-chips" class="submitted-chips">
+        <h3>Recent Submissions</h3>
+        <!-- Submitted chips will be displayed here -->
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>© 2025 Chip Flop Museum | All rights reserved | Privacy Policy</p>
+  </footer>
+  
+  <script>
+    // Initialize vote counts from localStorage or set to initial values
+    const voteCounts = {
+      doritos: parseInt(localStorage.getItem('doritos-votes')) || 3,
+      lays: parseInt(localStorage.getItem('lays-votes')) || 7,
+      pringles: parseInt(localStorage.getItem('pringles-votes')) || 2,
+      tato: parseInt(localStorage.getItem('tato-votes')) || 4,
+      cheetos: parseInt(localStorage.getItem('cheetos-votes')) || 4,
+      wow: parseInt(localStorage.getItem('wow-votes')) || 4
+    };
 
-        // Update initial vote counts
-        document.querySelectorAll('.chip-card').forEach(card => {
-            const id = card.dataset.id;
-            card.querySelector('.votes-count span').textContent = votes[id];
+    // Store user's last vote
+    let lastVote = localStorage.getItem('lastVote') || null;
+
+    // Initialize submitted chips from localStorage or set to empty array
+    let submittedChips = JSON.parse(localStorage.getItem('submittedChips')) || [];
+
+    // Update vote bars on page load
+    function updateVoteBars() {
+      const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
+      if (totalVotes > 0) {
+        Object.keys(voteCounts).forEach(chip => {
+          const percentage = (voteCounts[chip] / totalVotes) * 100;
+          const bars = document.querySelectorAll(`#${chip}-bar`);
+          bars.forEach(bar => {
+            bar.style.width = `${percentage}%`;
+          });
         });
+      }
+    }
 
-        // Add click handlers to vote buttons
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const card = button.closest('.chip-card');
-                const id = card.dataset.id;
-                votes[id]++;
-                
-                // Update display
-                card.querySelector('.votes-count span').textContent = votes[id];
-                
-                // Save to localStorage
-                localStorage.setItem('bigFlopVotes', JSON.stringify(votes));
-            });
+    // Update vote buttons based on last vote
+    function updateVoteButtons() {
+      const buttons = document.querySelectorAll('.vote-button');
+      buttons.forEach(button => {
+        const chip = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+        if (chip === lastVote) {
+          button.textContent = 'Voted';
+          button.style.backgroundColor = '#4CAF50';
+          button.style.cursor = 'pointer';
+        } else {
+          button.textContent = 'Vote';
+          button.style.backgroundColor = 'var(--accent)';
+          button.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    // Vote function
+    function vote(chip) {
+      // If clicking the same chip again, remove the vote
+      if (chip === lastVote) {
+        voteCounts[chip]--;
+        localStorage.setItem(`${chip}-votes`, voteCounts[chip]);
+        localStorage.removeItem('lastVote');
+        lastVote = null;
+      } else {
+        // If there was a previous vote, remove it
+        if (lastVote) {
+          voteCounts[lastVote]--;
+          localStorage.setItem(`${lastVote}-votes`, voteCounts[lastVote]);
+        }
+        
+        // Add new vote
+        voteCounts[chip]++;
+        localStorage.setItem(`${chip}-votes`, voteCounts[chip]);
+        localStorage.setItem('lastVote', chip);
+        lastVote = chip;
+      }
+      
+      // Update display
+      Object.keys(voteCounts).forEach(chipKey => {
+        const voteCounts = document.querySelectorAll(`#${chipKey}-votes`);
+        voteCounts.forEach(count => {
+          count.textContent = voteCounts[chipKey];
         });
-    </script>
+      });
+      
+      updateVoteBars();
+      updateVoteButtons();
+    }
+
+    // Submit chip flop function
+    function submitChipFlop(event) {
+      event.preventDefault();
+      
+      const chipName = document.getElementById('chip-name').value;
+      const chipYear = document.getElementById('chip-year').value;
+      const chipDescription = document.getElementById('chip-description').value;
+      const chipMemory = document.getElementById('chip-memory').value;
+      
+      if (!chipName || !chipYear || !chipDescription || !chipMemory) {
+        alert('Please fill in all fields');
+        return;
+      }
+      
+      const newChip = {
+        name: chipName,
+        year: chipYear,
+        description: chipDescription,
+        memory: chipMemory,
+        date: new Date().toLocaleDateString()
+      };
+      
+      submittedChips.push(newChip);
+      localStorage.setItem('submittedChips', JSON.stringify(submittedChips));
+      
+      // Update display
+      displaySubmittedChips();
+      
+      // Clear form
+      event.target.reset();
+      alert('Thank you for your submission!');
+    }
+
+    // Display submitted chips
+    function displaySubmittedChips() {
+      const container = document.getElementById('submitted-chips');
+      if (!container) return;
+      
+      container.innerHTML = submittedChips.map(chip => `
+        <div class="submitted-chip">
+          <h3>${chip.name} (${chip.year})</h3>
+          <p><strong>Why it failed:</strong> ${chip.description}</p>
+          <p><strong>Memory:</strong> ${chip.memory}</p>
+          <p class="submission-date">Submitted on: ${chip.date}</p>
+        </div>
+      `).join('');
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Update vote counts display
+      Object.keys(voteCounts).forEach(chip => {
+        const voteCounts = document.querySelectorAll(`#${chip}-votes`);
+        voteCounts.forEach(count => {
+          count.textContent = voteCounts[chip];
+        });
+      });
+      
+      updateVoteBars();
+      updateVoteButtons();
+      
+      // Initialize submit form
+      const submitForm = document.querySelector('.add-section form');
+      if (submitForm) {
+        submitForm.addEventListener('submit', submitChipFlop);
+      }
+      
+      // Display submitted chips
+      displaySubmittedChips();
+    });
+
+    // Tab switching function
+    function switchTab(tabId) {
+      // Update active tab
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
+      
+      // Update active content
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
