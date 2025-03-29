@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "extends": "@tsconfig/svelte/tsconfig.json",
     "compilerOptions": {
@@ -14,4 +15,22 @@
     },
     "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
     "references": [{ "path": "./tsconfig.node.json" }]
+=======
+{
+    "extends": "@tsconfig/svelte/tsconfig.json",
+    "compilerOptions": {
+        "target": "ESNext",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "allowJs": true,
+        "checkJs": true,
+        "isolatedModules": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "types": ["vite/client"]
+    },
+    "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+>>>>>>> e70043a0e855e053292ed2610ec3de895c3927cd
 } 
