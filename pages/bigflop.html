@@ -4,134 +4,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Flop Chips</title>
-    <!-- Use same style as champion.html but change primary color to #ff4444 -->
     <style>
-        /* Copy styles from champion.html and change #0066ff to #ff4444 */
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo-container">
-            <h1>CHIPS!!!</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="champion.html">CHAMPION</a></li>
-                <li><a href="bigflop.html">BIG FLOP</a></li>
-                <li><a href="bizarre.html">MOST BIZARRE</a></li>
-                <li><a href="bestsales.html">CHIP GIANTS</a></li>
-                <li><a href="curved-chips.html">FUN FACTS</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <header>
-        <a href="chip.html" class="back-button">← Back to Home</a>
-    </header>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
         header {
             background-color: rgb(255, 217, 0);
-            height: 80px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            padding: 1rem;
             display: flex;
             align-items: center;
         }
-    
-        .logo-container {
-            width: 200px;
-            height: 80px;
-            position: relative;
-            margin-left: 20px;
-        }
-    
-        .logo-container h1 {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(logo3.png);
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            text-indent: -9999px;
-        }
-    
-        header nav {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 30px;
-        }
-    
-        header ul {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-    
-        header a {
+
+        .back-button {
             color: purple;
             text-decoration: none;
-            font-size: 16px;
             border: 2px solid purple;
             padding: 8px 16px;
             border-radius: 4px;
             transition: all 0.3s ease;
-            white-space: nowrap;
-            display: block;
         }
-    
-        header a:hover {
+
+        .back-button:hover {
             background-color: purple;
             color: white;
         }
-    
-        /* Add margin-top to main content to account for fixed header */
+
         main {
-            margin-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-    
-        /* Media query for responsive design */
-        @media (max-width: 768px) {
-            header {
-                height: auto;
-                padding: 10px;
-                flex-direction: column;
-            }
-    
-            .logo-container {
-                margin: 0 auto;
-            }
-    
-            header nav {
-                padding-right: 0;
-            }
-    
-            header ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-    
-            main {
-                margin-top: 160px; /* Adjust based on header height in mobile view */
-            }
+
+        .voting-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #0066ff;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .voting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .chip-card {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+
+        .chip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chip-info {
+            margin-top: 1rem;
+        }
+
+        .chip-info h2 {
+            color: #0066ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .chip-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .vote-button {
+            background-color: #0066ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .vote-button:hover {
+            background-color: #0052cc;
+        }
+
+        .votes-count {
+            font-weight: bold;
+            color: #0066ff;
         }
     </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="back-button">← Back to Home</a>
+    </header>
 
     <main>
-        <section class="champion-section">
-            <h1>Big Flop Chips</h1>
-            <p>Vote for the chips you think are the worst!</p>
+        <div class="voting-container">
+            <h1>Biggest Chip Flops</h1>
+            <p>Vote for the chips that you think were the biggest market failures!</p>
 
-            <div class="voting-section">
-                <!-- Similar structure to champion.html but with different chips -->
+            <div class="voting-grid">
+                <div class="chip-card" data-id="1">
+                    <h2>Lay's Limon</h2>
+                    <p>Too sour and artificial tasting</p>
+                    <div class="chip-info">
+                        <p class="votes-count">Votes: <span>0</span></p>
+                        <button class="vote-button">Vote</button>
+                    </div>
+                </div>
+
+                <div class="chip-card" data-id="2">
+                    <h2>Doritos 3D Crunch</h2>
+                    <p>Discontinued due to poor sales</p>
+                    <div class="chip-info">
+                        <p class="votes-count">Votes: <span>0</span></p>
+                        <button class="vote-button">Vote</button>
+                    </div>
+                </div>
+
+                <div class="chip-card" data-id="3">
+                    <h2>Pringles Rice</h2>
+                    <p>Failed to capture the original Pringles magic</p>
+                    <div class="chip-info">
+                        <p class="votes-count">Votes: <span>0</span></p>
+                        <button class="vote-button">Vote</button>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
+
+    <script>
+        // Initialize votes from localStorage or default to 0
+        const votes = JSON.parse(localStorage.getItem('bigFlopVotes')) || {
+            '1': 0,
+            '2': 0,
+            '3': 0
+        };
+
+        // Update initial vote counts
+        document.querySelectorAll('.chip-card').forEach(card => {
+            const id = card.dataset.id;
+            card.querySelector('.votes-count span').textContent = votes[id];
+        });
+
+        // Add click handlers to vote buttons
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.chip-card');
+                const id = card.dataset.id;
+                votes[id]++;
+                
+                // Update display
+                card.querySelector('.votes-count span').textContent = votes[id];
+                
+                // Save to localStorage
+                localStorage.setItem('bigFlopVotes', JSON.stringify(votes));
+            });
+        });
+    </script>
 </body>
 </html>

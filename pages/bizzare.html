@@ -3,26 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Most Bizarre Chips</title>
-    <!-- Use same style as champion.html but change primary color to #9933cc -->
+    <title>Bizarre Chip Flavors</title>
     <style>
-        /* Copy styles from champion.html and change #0066ff to #9933cc */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: rgb(255, 217, 0);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-button {
+            color: purple;
+            text-decoration: none;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: purple;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .voting-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ff6600;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .voting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .chip-card {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+
+        .chip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chip-info {
+            margin-top: 1rem;
+        }
+
+        .chip-info h2 {
+            color: #ff6600;
+            margin-bottom: 0.5rem;
+        }
+
+        .chip-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .vote-button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .vote-button:hover {
+            background-color: #cc5200;
+        }
+
+        .votes-count {
+            font-weight: bold;
+            color: #ff6600;
+        }
     </style>
 </head>
 <body>
     <header>
-        <a href="chip.html" class="back-button">← Back to Home</a>
+        <a href="../index.html" class="back-button">← Back to Home</a>
     </header>
 
     <main>
-        <section class="champion-section">
-            <h1>Most Bizarre Chips</h1>
-            <p>Discover and vote for the most unusual chip flavors!</p>
+        <div class="voting-container">
+            <h1>Most Bizarre Chip Flavors</h1>
+            <p>Vote for the most unusual and bizarre chip flavors you've ever heard of!</p>
 
-            <div class="voting-section">
-                <!-- Similar structure to champion.html but with different chips -->
+            <div class="voting-grid">
+                <div class="chip-card" data-id="1">
+                    <h2>Lay's Cappuccino</h2>
+                    <p>Coffee-flavored chips</p>
+                    <div class="chip-info">
+                        <p class="votes-count">Votes: <span>0</span></p>
+                        <button class="vote-button">Vote</button>
+                    </div>
+                </div>
+
+                <div class="chip-card" data-id="2">
+                    <h2>Doritos Taco</h2>
+                    <p>Taco-flavored chips</p>
+                    <div class="chip-info">
+                        <p class="votes-count">Votes: <span>0</span></p>
+                        <button class="vote-button">Vote</button>
+                    </div>
+                </div>
+
+                <div class="chip-card" data-id="3">
+                    <h2>Pringles Pizza</h2>
+                    <p>Pizza-flavored chips</p>
+                    <div class="chip-info">
+                        <p class="votes-count">Votes: <span>0</span></p>
+                        <button class="vote-button">Vote</button>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
+
+    <script>
+        // Initialize votes from localStorage or default to 0
+        const votes = JSON.parse(localStorage.getItem('bizarreVotes')) || {
+            '1': 0,
+            '2': 0,
+            '3': 0
+        };
+
+        // Update initial vote counts
+        document.querySelectorAll('.chip-card').forEach(card => {
+            const id = card.dataset.id;
+            card.querySelector('.votes-count span').textContent = votes[id];
+        });
+
+        // Add click handlers to vote buttons
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.chip-card');
+                const id = card.dataset.id;
+                votes[id]++;
+                
+                // Update display
+                card.querySelector('.votes-count span').textContent = votes[id];
+                
+                // Save to localStorage
+                localStorage.setItem('bizarreVotes', JSON.stringify(votes));
+            });
+        });
+    </script>
 </body>
 </html>
