@@ -25,13 +25,16 @@
             z-index: 1000;
             display: flex;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
         }
 
         .logo-container {
-            width: 200px;
+            width: 120px;
             height: 80px;
-            position: relative;
-            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         h1 {
@@ -49,29 +52,35 @@
             flex: 1;
             display: flex;
             justify-content: flex-end;
-            padding-right: 30px;
+            padding-right: 20px;
         }
 
         header ul {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             list-style: none;
+            align-items: center;
         }
 
         header a {
             color: purple;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: bold;
             border: 2px solid purple;
-            padding: 8px 16px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             transition: all 0.3s ease;
             white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         header a:hover {
             background-color: purple;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(128, 0, 128, 0.2);
         }
 
         /* Main content styles */
@@ -86,7 +95,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            padding: 40px;
+            padding: 100px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -96,19 +105,25 @@
         .sharing h2 {
             font-size: 80px;
             color: #0066ff;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 3px 3px 0 #000,
+                         6px 6px 0 rgba(0, 0, 0, 0.2),
+                         9px 9px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
         }
 
         .sharing p {
             font-size: 24px;
-            color: #007bff;
-            margin-bottom: 20px;
+            color: aqua;
+            margin-bottom: 60px;
         }
 
         .sharing nav {
             margin-top: 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
         }
 
         .sharing ul {
@@ -122,10 +137,13 @@
             color: aqua;
             text-decoration: none;
             border: 3px solid aqua;
-            padding: 20px;
+            padding: 20px 40px;
             font-size: 24px;
-            display: block;
+            display: inline-block;
             transition: all 0.3s ease;
+            min-width: 200px;
+            text-align: center;
+            border-radius: 25px;
         }
 
         .sharing a:hover {
@@ -142,40 +160,51 @@
             background-position: center;
             background-repeat: no-repeat;
             background-blend-mode: darken;
-            padding: 40px;
+            padding: 100px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
         .brands h2 {
-            font-size: 60px;
+            font-size: 80px;
             color: yellow;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            font-weight: bold;
+            text-shadow: 3px 3px 0 #000,
+                         6px 6px 0 rgba(0, 0, 0, 0.2),
+                         9px 9px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
         }
 
         .brands p {
             font-size: 24px;
             color: yellow;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .brands nav {
             width: 100%;
             max-width: 800px;
             margin: 20px 0;
+            display: flex;
+            justify-content: center;
         }
 
         .brands a {
             color: white;
             text-decoration: none;
             border: 3px solid white;
-            padding: 20px;
+            padding: 20px 40px;
             font-size: 24px;
-            display: block;
+            display: inline-block;
             margin: 20px;
             transition: all 0.3s ease;
+            border-radius: 25px;
+            min-width: 300px;
+            text-align: center;
         }
 
         .brands a:hover {
@@ -192,7 +221,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-blend-mode: darken;
-            padding: 40px;
+            padding: 100px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -200,37 +229,79 @@
         }
 
         .facts h2 {
-            font-size: 60px;
+            font-size: 80px;
             color: #ff6600;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            font-weight: bold;
+            text-shadow: 3px 3px 0 #000,
+                         6px 6px 0 rgba(0, 0, 0, 0.2),
+                         9px 9px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
         }
 
         .facts p {
             font-size: 24px;
             color: yellow;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .facts ul {
             list-style: none;
             width: 100%;
             max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .facts a {
+        .facts li {
+            color: white;
+            font-size: 18px;
+            padding: 18px 25px;
+            background-color: rgba(255, 255, 255, 0.25);
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .facts li:hover {
+            transform: translateX(10px);
+            border-color: white;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .facts .emoji {
+            font-size: 22px;
+            min-width: 35px;
+        }
+
+        .facts .more-link {
             color: white;
             text-decoration: none;
-            padding: 15px;
-            font-size: 20px;
-            display: block;
-            margin: 10px 0;
-            border-bottom: 2px solid transparent;
+            padding: 20px 50px;
+            font-size: 24px;
+            display: inline-block;
+            margin: 40px 0;
+            border: 3px solid white;
+            border-radius: 30px;
             transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+            min-width: 400px;
         }
 
-        .facts a:hover {
-            border-bottom-color: white;
+        .facts .more-link:hover {
+            background-color: white;
             color: #ff6600;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
         }
 
         footer {
@@ -241,46 +312,49 @@
         }
 
         /* Media Queries */
-        @media (max-width: 768px) {
-            header {
-                height: auto;
-                padding: 10px;
-                flex-direction: column;
-            }
-
+        @media (max-width: 1024px) {
             .logo-container {
-                margin: 0 auto;
+                width: 100px;
             }
 
-            header nav {
-                padding-right: 0;
+            header a {
+                font-size: 13px;
+                padding: 6px 10px;
             }
 
             header ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                width: 80px;
             }
 
-            .sharing h2,
-            .brands h2,
-            .facts h2 {
-                font-size: 40px;
+            header a {
+                font-size: 12px;
+                padding: 6px 8px;
             }
 
-            .sharing p,
-            .brands p,
-            .facts p {
-                font-size: 18px;
+            header ul {
+                gap: 6px;
             }
 
-            .sharing ul {
-                grid-template-columns: 1fr;
+            header nav {
+                padding-right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header ul {
+                gap: 8px;
             }
 
-            .sharing a,
-            .brands a {
-                padding: 15px;
-                font-size: 18px;
+            header a {
+                min-width: 110px;
+                font-size: 12px;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -292,23 +366,23 @@
         </div>
         <nav>
             <ul>
-                <li><a href="pages/bestsales.html">Best Sales</a></li>
+                <li><a href="pages/champion.html">Champion</a></li>
                 <li><a href="pages/bigflop.html">Big Flop</a></li>
                 <li><a href="pages/bizzare.html">Bizzare</a></li>
-                <li><a href="pages/champion.html">Champion</a></li>
-                <li><a href="pages/curved-chips.html">Curved Chips</a></li>
-                <li><a href="pages/globalmap.html">Global Map</a></li>
+                <li><a href="pages/flavor.html">Flavors Holder</a></li>
+                <li><a href="pages/Sub-website_FunFacts.html">Fun Facts</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="sharing">
-            <h2>SHARING</h2>
-            <p>- Who are they?</p>
+            <h2>PICK UP YOUR CHOICE!</h2>
+            <p>- See What Other Chips Enthusiasts Say!</p>
             <nav>
-                <a href="pages/bestsales.html">BEST SALES CHIP BRANDS</a>
-                <a href="pages/globalmap.html">Global Chips Markets Map</a>
+                <a href="pages/champion.html">CHAMPION</a>
+                <a href="pages/bigflop.html">BIG FLOP</a>
+                <a href="pages/bizzare.html">BIZZARE</a>
             </nav>
         </section>
 
@@ -316,22 +390,20 @@
             <h2>CHIP GIANTS</h2>
             <p>- Who are they?</p>
             <nav>
-                <a href="pages/bestsales.html">BEST SALES CHIP BRANDS</a>
-                <a href="pages/globalmap.html">Global Chips Markets Map</a>
+                <a href="pages/flavor.html">The Most Flavors Holder Ranking</a>
             </nav>
         </section>
 
         <section class="facts">
             <h2>FUN FACTS</h2>
             <p>- Do you know?</p>
-            <nav>
-                <ul>
-                    <li><a href="pages/Sub-website_FunFacts.html">Why are Canned potato chips curved?</a></li>
-                    <li><a href="pages/chips-history.html">How are Chips invented?</a></li>
-                    <li><a href="pages/chips-earth.html">If we connect all the sold potato chip bags end to end, how many times could they circle the Earth?</a></li>
-                    <li><a href="pages/more-facts.html">to be continued...</a></li>
-                </ul>
-            </nav>
+            <ul>
+                <li><span class="emoji">🌟</span>The world's largest bag of potato chips weighed 1,141 pounds!</li>
+                <li><span class="emoji">🎨</span>There are over 1,000 different chip flavors worldwide.</li>
+                <li><span class="emoji">📊</span>Americans consume about 1.85 billion pounds of potato chips annually.</li>
+                <li><span class="emoji">🏭</span>The first potato chip factory opened in 1895.</li>
+            </ul>
+            <a href="pages/Sub-website_FunFacts.html" class="more-link">To Find Out More ...</a>
         </section>
     </main>
     <footer>Created by YX.Z ML.Z YT.O</footer>
