@@ -1,0 +1,118 @@
+{
+    "chips": [
+        {
+            "rank": 1,
+            "brand": "Lay's",
+            "productLines": [
+                {
+                    "name": "Classic Potato Chips",
+                    "flavors": [
+                        "Original",
+                        "Barbecue",
+                        "Sour Cream & Onion",
+                        "Tomato",
+                        "Cucumber",
+                        "Honey Roasted Chicken",
+                        "Spicy",
+                        "Sea Salt",
+                        "Cheese",
+                        "Black Pepper"
+                    ]
+                },
+                {
+                    "name": "Ruffles (Wavy)",
+                    "flavors": [
+                        "Original",
+                        "Cheese",
+                        "Sour Cream & Onion",
+                        "Barbecue",
+                        "Spicy",
+                        "Sea Salt",
+                        "Smoked Bacon",
+                        "Jalapeño",
+                        "Honey Mustard",
+                        "Hot & Sour"
+                    ]
+                },
+                {
+                    "name": "Stax (Canned)",
+                    "flavors": [
+                        "Original",
+                        "Sour Cream & Onion",
+                        "Cheese",
+                        "Barbecue",
+                        "Salt & Vinegar",
+                        "Spicy"
+                    ]
+                }
+            ]
+        },
+        {
+            "rank": 2,
+            "brand": "Pringles",
+            "productLines": [
+                {
+                    "name": "Original Series",
+                    "flavors": [
+                        "Original",
+                        "Sour Cream & Onion",
+                        "Cheddar Cheese",
+                        "BBQ",
+                        "Pizza",
+                        "Salt & Vinegar",
+                        "Ranch",
+                        "Jalapeño"
+                    ]
+                }
+            ]
+        },
+        {
+            "rank": 3,
+            "brand": "Doritos",
+            "productLines": [
+                {
+                    "name": "Tortilla Chips",
+                    "flavors": [
+                        "Nacho Cheese",
+                        "Cool Ranch",
+                        "Spicy Sweet Chili",
+                        "Flamin' Hot",
+                        "Spicy Nacho"
+                    ]
+                }
+            ]
+        },
+        {
+            "rank": 4,
+            "brand": "Ruffles",
+            "productLines": [
+                {
+                    "name": "Original Ridges",
+                    "flavors": [
+                        "Original",
+                        "Cheddar & Sour Cream",
+                        "Sour Cream & Onion",
+                        "BBQ",
+                        "Flamin' Hot"
+                    ]
+                }
+            ]
+        },
+        {
+            "rank": 5,
+            "brand": "Oishi",
+            "productLines": [
+                {
+                    "name": "Potato Chips Series",
+                    "flavors": [
+                        "Original",
+                        "Tomato",
+                        "Barbecue",
+                        "Seaweed",
+                        "Honey Butter"
+                    ]
+                }
+            ]
+        }
+    ]
+} 
