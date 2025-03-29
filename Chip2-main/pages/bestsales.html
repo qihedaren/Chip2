@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Selling Chips</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            background-image: url(../assets/brandsbg1.webp);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgba(255, 217, 0, 0.95);
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 80px;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .logo-container h1 {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../assets/logo3.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            text-indent: -9999px;
+        }
+
+        header nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
+
+        header ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        header a {
+            color: purple;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        header a:hover {
+            background-color: purple;
+            color: white;
+        }
+
+        main {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            display: inline-block;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Ranking Chart Styles */
+        .ranking-chart {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .ranking-chart h2 {
+            text-align: center;
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #0066ff;
+            padding-bottom: 1rem;
+        }
+
+        .flavor-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: linear-gradient(to right, rgba(248, 249, 250, 0.9), rgba(255, 255, 255, 0.9));
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .flavor-bar:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
+        }
+
+        .flavor-rank {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0066ff;
+            margin-right: 1.5rem;
+            min-width: 50px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .flavor-brand-logo {
+            width: 120px;
+            height: 70px;
+            object-fit: contain;
+            margin-right: 1.5rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .flavor-info {
+            flex: 1;
+        }
+
+        .flavor-brand-name {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .flavor-count {
+            font-size: 1.2rem;
+            color: #0066ff;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .flavor-list {
+            font-size: 0.9rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .flavor-tag {
+            background: rgba(0, 102, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            color: #0066ff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .flavor-tag:hover {
+            background: rgba(0, 102, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .flavor-bar {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+
+            .flavor-rank {
+                margin-bottom: 1rem;
+            }
+
+            .flavor-brand-logo {
+                margin: 1rem 0;
+            }
+
+            .flavor-info {
+                width: 100%;
+            }
+
+            .flavor-list {
+                justify-content: center;
+            }
+
+            .flavor-brand-name {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>CHIPS!!!</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="bestsales.html">Best Sales</a></li>
+                <li><a href="globalmap.html">Global Map</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">Top Chip Brands and Their Flavors</h1>
+        <div id="brands-container">
+            <!-- Ranking chart will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        // Embedded data
+        const chipsData = {
+            "chips": [
+                {
+                    "rank": 1,
+                    "brand": "Lay's",
+                    "logo": "../assets/brandslogo/logolays.png",
+                    "productLines": [
+                        {
+                            "name": "Classic Potato Chips",
+                            "flavors": [
+                                "Original",
+                                "Barbecue",
+                                "Sour Cream & Onion",
+                                "Tomato",
+                                "Cucumber",
+                                "Honey Roasted Chicken",
+                                "Spicy",
+                                "Sea Salt",
+                                "Cheese",
+                                "Black Pepper"
+                            ]
+                        },
+                        {
+                            "name": "Ruffles (Wavy)",
+                            "flavors": [
+                                "Original",
+                                "Cheese",
+                                "Sour Cream & Onion",
+                                "Barbecue",
+                                "Spicy",
+                                "Sea Salt",
+                                "Smoked Bacon",
+                                "Jalapeño",
+                                "Honey Mustard",
+                                "Hot & Sour"
+                            ]
+                        },
+                        {
+                            "name": "Stax (Canned)",
+                            "flavors": [
+                                "Original",
+                                "Sour Cream & Onion",
+                                "Cheese",
+                                "Barbecue",
+                                "Salt & Vinegar",
+                                "Spicy",
+                                "Smoked Bacon"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 2,
+                    "brand": "Pringles",
+                    "logo": "../assets/brandslogo/logopingles.png",
+                    "productLines": [
+                        {
+                            "name": "Original Series",
+                            "flavors": [
+                                "Original",
+                                "Sour Cream & Onion",
+                                "Cheddar Cheese",
+                                "BBQ",
+                                "Pizza",
+                                "Salt & Vinegar",
+                                "Ranch",
+                                "Jalapeño"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 3,
+                    "brand": "Doritos",
+                    "logo": "../assets/brandslogo/logodoritos.png",
+                    "productLines": [
+                        {
+                            "name": "Tortilla Chips",
+                            "flavors": [
+                                "Nacho Cheese",
+                                "Cool Ranch",
+                                "Spicy Sweet Chili",
+                                "Flamin' Hot",
+                                "Spicy Nacho",
+                                "Taco",
+                                "Salsa Verde",
+                                "Zesty Cheese",
+                                "BBQ",
+                                "Pizza"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 4,
+                    "brand": "Ruffles",
+                    "logo": "../assets/brandslogo/logoRuffles.png",
+                    "productLines": [
+                        {
+                            "name": "Original Ridges",
+                            "flavors": [
+                                "Original",
+                                "Cheddar & Sour Cream",
+                                "Sour Cream & Onion",
+                                "BBQ",
+                                "Flamin' Hot"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 5,
+                    "brand": "Cheetos",
+                    "logo": "../assets/brandslogo/logoCheetos.png",
+                    "productLines": [
+                        {
+                            "name": "Crunchy Series",
+                            "flavors": [
+                                "Original",
+                                "Flamin' Hot",
+                                "Cheddar Jalapeño",
+                                "Spicy",
+                                "BBQ"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 6,
+                    "brand": "Oishi",
+                    "logo": "../assets/brandslogo/logooishi.jpg",
+                    "productLines": [
+                        {
+                            "name": "Potato Chips Series",
+                            "flavors": [
+                                "Original",
+                                "Tomato",
+                                "Barbecue",
+                                "Seaweed",
+                                "Honey Butter"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 7,
+                    "brand": "Capico",
+                    "logo": "../assets/brandslogo/logocapico.png",
+                    "productLines": [
+                        {
+                            "name": "Potato Chips Series",
+                            "flavors": [
+                                "Original",
+                                "Tomato",
+                                "Barbecue",
+                                "Cucumber",
+                                "Spicy"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 8,
+                    "brand": "Herr's",
+                    "logo": "../assets/brandslogo/logoherrs.png",
+                    "productLines": [
+                        {
+                            "name": "Classic Series",
+                            "flavors": [
+                                "Original",
+                                "Sour Cream & Onion",
+                                "BBQ",
+                                "Salt & Vinegar",
+                                "Cheddar Cheese",
+                                "Ketchup"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 9,
+                    "brand": "SunChips",
+                    "logo": "../assets/brandslogo/logoSunChips.png",
+                    "productLines": [
+                        {
+                            "name": "Whole Grain Series",
+                            "flavors": [
+                                "Original",
+                                "Garden Salsa"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 10,
+                    "brand": "Fritos",
+                    "logo": "../assets/brandslogo/logofritos.jpeg",
+                    "productLines": [
+                        {
+                            "name": "Corn Chips Series",
+                            "flavors": [
+                                "Original",
+                                "Honey BBQ",
+                                "Chili Cheese",
+                                "Smoked Bacon"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "rank": 11,
+                    "brand": "Tostitos",
+                    "logo": "../assets/brandslogo/logoTostitos.jpg",
+                    "productLines": [
+                        {
+                            "name": "Tortilla Chips Series",
+                            "flavors": [
+                                "Original",
+                                "Hint of Lime",
+                                "Hint of Jalapeño",
+                                "Roasted Red Pepper"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        function countTotalFlavors(brand) {
+            return brand.productLines.reduce((total, line) => total + line.flavors.length, 0);
+        }
+
+        function getAllFlavors(brand) {
+            return brand.productLines.reduce((all, line) => [...all, ...line.flavors], []);
+        }
+
+        function loadChipsData() {
+            const container = document.getElementById('brands-container');
+
+            // Sort brands by flavor count
+            const sortedBrands = [...chipsData.chips].sort((a, b) => 
+                countTotalFlavors(b) - countTotalFlavors(a)
+            );
+
+            // Create ranking chart
+            const rankingChart = document.createElement('div');
+            rankingChart.className = 'ranking-chart';
+            rankingChart.innerHTML = `
+                <h2>Brands Ranked by Flavor Variety</h2>
+                ${sortedBrands.map((brand, index) => {
+                    const flavorCount = countTotalFlavors(brand);
+                    const allFlavors = getAllFlavors(brand);
+                    return `
+                        <div class="flavor-bar">
+                            <div class="flavor-rank">#${index + 1}</div>
+                            <img src="${brand.logo}" alt="${brand.brand} logo" class="flavor-brand-logo">
+                            <div class="flavor-info">
+                                <div class="flavor-brand-name">${brand.brand}</div>
+                                <div class="flavor-count">${flavorCount} Flavors</div>
+                                <div class="flavor-list">
+                                    ${allFlavors.map(flavor => 
+                                        `<span class="flavor-tag">${flavor}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            `;
+            container.appendChild(rankingChart);
+        }
+
+        window.addEventListener('load', loadChipsData);
+    </script>
+</body>
+</html>
