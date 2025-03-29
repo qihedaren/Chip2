@@ -334,9 +334,44 @@
                 height: 250px;
             }
         }
+
+        /* Back button styles */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        .back-button {
+            color: purple;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border: 2px solid purple;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: rgb(255, 217, 0);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background-color: purple;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(128, 0, 128, 0.2);
+        }
     </style>
 </head>
 <body>
+    <div class="back-button-container">
+        <a href="../index.html" class="back-button">← Back To Home</a>
+    </div>
     <header>
         <h1>🥔 Crunchy Crisp Fun Facts 🥔</h1>
         <p>The Ultimate Place for All Things Crispy and Delicious!</p>
@@ -344,7 +379,9 @@
 
     <main>
         <section id="fun-facts">
-            <div class="banner"></div>
+            <div class="banner">
+                <img src="../assets/images/crisp-experience-banner.jpg" alt="Crisp Experience Banner" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
 
             <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
                 Crisps, or potato chips, are one of the world's most beloved snacks. Whether you're watching a movie,
@@ -355,12 +392,12 @@
 
             <h2>The Ultimate Crisp Experience</h2>
             <video controls>
-                <source src="assets/videos/crisp-experience-compressed.mp4" type="video/mp4">
+                <source src="../assets/videos/crisp-experience-compressed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
             <h2>Fun Facts About Crisps!</h2>
-            <img src="assets/images/lays_realistic.jpg" alt="A bag of Lay's chips">
+            <img src="../assets/images/lays_realistic.jpg" alt="A bag of Lay's chips">
             <ul>
                 <li>🥔 The very first potato chip was made in 1853 by George Crum.</li>
                 <li>🌍 Lay's chips are sold under different names worldwide, like Walkers in the UK and Sabritas in Mexico.</li>
@@ -371,7 +408,7 @@
 
             <h2>How Crisps Are Made – From Farm to Crunch</h2>
             <video controls>
-                <source src="assets/videos/how-crisps-are-made-compressed.mp4" type="video/mp4">
+                <source src="../assets/videos/how-crisps-are-made-compressed.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </section>
