@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bizarre Chip Flavors</title>
     <style>
+        :root {
+            --primary: #9c27b0;
+            --secondary: #f44336;
+            --dark: #333;
+            --light: #f5f5f5;
+            --accent: #2196f3;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,189 +20,539 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffeb3b;
+            color: var(--dark);
+            background-image: url('../assets/bg2.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
         }
 
         header {
-            background-color: rgb(255, 217, 0);
+            background-color: var(--primary);
             padding: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .back-button-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .back-button {
-            color: purple;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            color: var(--dark);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            border: 2px solid purple;
-            padding: 8px 16px;
-            border-radius: 6px;
+            border: 2px solid var(--dark);
+            border-radius: 4px;
             transition: all 0.3s ease;
-            background-color: rgb(255, 217, 0);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .back-button:hover {
-            background-color: purple;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(128, 0, 128, 0.2);
+            background-color: var(--dark);
+            color: var(--light);
         }
 
-        main {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-        }
-
-        .voting-container {
             background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         h1 {
-            color: #ff6600;
-            font-size: 3rem;
-            margin-bottom: 2rem;
             text-align: center;
+            color: var(--accent);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
         }
 
-        .voting-grid {
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .chip-card {
             border: 1px solid #ddd;
-            padding: 1rem;
             border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
             background-color: white;
-            transition: transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .chip-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .chip-info {
-            margin-top: 1rem;
+        .chip-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
         }
 
-        .chip-info h2 {
-            color: #ff6600;
-            margin-bottom: 0.5rem;
+        .chip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
         }
 
-        .chip-info p {
+        .chip-content {
+            padding: 1.5rem;
+        }
+
+        .chip-name {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--dark);
+        }
+
+        .chip-description {
             color: #666;
             margin-bottom: 1rem;
         }
 
-        .vote-button {
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .vote-button:hover {
-            background-color: #cc5200;
+        .votes {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .votes-count {
             font-weight: bold;
-            color: #ff6600;
+            margin-left: 0.5rem;
+            color: var(--dark);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .votes-count.visible {
+            opacity: 1;
+        }
+
+        .vote-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        .vote-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .vote-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .vote-button:hover {
+            background-color: #0b7dda;
+        }
+
+        .vote-button.voted {
+            background-color: #4CAF50;
+        }
+
+        .comment-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .comment-form {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .submit-button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #388E3C;
+        }
+        
+        .comments-container {
+            margin-top: 2rem;
+        }
+        
+        .comment {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .comment h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .comment p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        
+        .comment-date {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="back-button-container">
+    <header>
         <a href="../index.html" class="back-button">← Back To Home</a>
+    </header>
+
+    <div class="container">
+        <h1>Most Bizarre Chip Flavors</h1>
+        <p class="intro">Vote for the most unusual and mind-bending chip flavors ever created!</p>
+
+        <div class="grid">
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/bigflop images/Lay's Limon.webp" alt="Lay's Ketchup & Ice Cream Sundae">
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Lay's Ketchup & Ice Cream Sundae</h2>
+                    <p class="chip-description">A mind-bending fusion of cold sweet ice cream and tangy ketchup, topped with hot fudge sauce. Each bite is a temperature-confusing experience!</p>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="1-bar"></div>
+                    </div>
+                    <p class="votes-count">Votes: <span id="1-votes">0</span></p>
+                    <button class="vote-button" onclick="vote('1')">Vote</button>
+                </div>
+            </div>
+
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/bigflop images/Pringles Rice.png" alt="Pringles White Chocolate & Garlic">
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Pringles White Chocolate & Garlic</h2>
+                    <p class="chip-description">Sweet meets savory in the most unexpected way! Creamy white chocolate coating with a powerful garlic aftertaste that lingers for hours.</p>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="2-bar"></div>
+                    </div>
+                    <p class="votes-count">Votes: <span id="2-votes">0</span></p>
+                    <button class="vote-button" onclick="vote('2')">Vote</button>
+                </div>
     </div>
 
-    <main>
-        <div class="voting-container">
-            <h1>Most Bizarre Chip Flavors</h1>
-            <p>Vote for the most unusual and bizarre chip flavors you've ever heard of!</p>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/bigflop images/Doritos 3D Crunch.png" alt="Doritos Wasabi & Bubblegum">
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Doritos Wasabi & Bubblegum</h2>
+                    <p class="chip-description">The nose-burning heat of wasabi combined with the sweet, artificial flavor of bubblegum. Comes with a pack of tissues!</p>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="3-bar"></div>
+                    </div>
+                    <p class="votes-count">Votes: <span id="3-votes">0</span></p>
+                    <button class="vote-button" onclick="vote('3')">Vote</button>
+                </div>
+            </div>
 
-            <div class="voting-grid">
-                <div class="chip-card" data-id="1">
-                    <h2>Lay's Cappuccino</h2>
-                    <p>Coffee-flavored chips</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/bigflop images/Cheetos Checkers.webp" alt="Cheetos Sweet & Sour Fish">
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Cheetos Sweet & Sour Fish</h2>
+                    <p class="chip-description">The sweetness you love, now with an unexpected twist of fermented fish sauce. Each puff releases a unique aroma that fills the room!</p>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="4-bar"></div>
+                    </div>
+                    <p class="votes-count">Votes: <span id="4-votes">0</span></p>
+                    <button class="vote-button" onclick="vote('4')">Vote</button>
                     </div>
                 </div>
 
-                <div class="chip-card" data-id="2">
-                    <h2>Doritos Taco</h2>
-                    <p>Taco-flavored chips</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/bigflop images/Tato Skins.png" alt="Ruffles Milk & Pickle Juice">
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Ruffles Milk & Pickle Juice</h2>
+                    <p class="chip-description">The creamy taste of milk chips now enhanced with tangy pickle juice and a hint of dill. A dairy adventure you never asked for!</p>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="5-bar"></div>
+                    </div>
+                    <p class="votes-count">Votes: <span id="5-votes">0</span></p>
+                    <button class="vote-button" onclick="vote('5')">Vote</button>
                     </div>
                 </div>
 
-                <div class="chip-card" data-id="3">
-                    <h2>Pringles Pizza</h2>
-                    <p>Pizza-flavored chips</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/bigflop images/WOW! Chips.webp" alt="Mystery Flavor Challenge">
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Mystery Flavor Challenge</h2>
+                    <p class="chip-description">A random combination of all other bizarre flavors - different in every bag! Warning: Taste at your own risk!</p>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="6-bar"></div>
                     </div>
+                    <p class="votes-count">Votes: <span id="6-votes">0</span></p>
+                    <button class="vote-button" onclick="vote('6')">Vote</button>
                 </div>
             </div>
         </div>
-    </main>
+
+        <div class="comment-section">
+            <h2>Share Your Bizarre Experience</h2>
+            <p>Have you tried any of these mind-bending flavors? Tell us your story!</p>
+            
+            <form class="comment-form">
+                <div class="form-group">
+                    <label for="chip-name">Chip's Name</label>
+                    <input type="text" id="chip-name" class="form-control" placeholder="e.g. Lay's Ketchup & Ice Cream Sundae" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="submitter-name">Your Name</label>
+                    <input type="text" id="submitter-name" class="form-control" placeholder="e.g. John Smith" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment-year">When Did You Try It?</label>
+                    <input type="text" id="comment-year" class="form-control" placeholder="e.g. Early 2020s" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment-reason">What Makes It Bizarre?</label>
+                    <textarea id="comment-reason" class="form-control" rows="4" placeholder="Tell us what makes this flavor combination so unusual..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment-memory">Your Reaction</label>
+                    <textarea id="comment-memory" class="form-control" rows="4" placeholder="Share your reaction when you first tried this bizarre flavor..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Submit Story</button>
+            </form>
+
+            <div id="submitted-chips" class="submitted-chips">
+                <h3>Recent Stories</h3>
+                <!-- Submitted stories will be displayed here -->
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Initialize votes from localStorage or default to 0
-        const votes = JSON.parse(localStorage.getItem('bizarreVotes')) || {
-            '1': 0,
-            '2': 0,
-            '3': 0
+        // Initialize vote counts from localStorage or set to initial values
+        const voteCounts = {
+            '1': Math.max(0, parseInt(localStorage.getItem('bizarre-1-votes')) || 0),
+            '2': Math.max(0, parseInt(localStorage.getItem('bizarre-2-votes')) || 0),
+            '3': Math.max(0, parseInt(localStorage.getItem('bizarre-3-votes')) || 0),
+            '4': Math.max(0, parseInt(localStorage.getItem('bizarre-4-votes')) || 0),
+            '5': Math.max(0, parseInt(localStorage.getItem('bizarre-5-votes')) || 0),
+            '6': Math.max(0, parseInt(localStorage.getItem('bizarre-6-votes')) || 0)
         };
 
-        // Update initial vote counts
-        document.querySelectorAll('.chip-card').forEach(card => {
-            const id = card.dataset.id;
-            card.querySelector('.votes-count span').textContent = votes[id];
-        });
+        // Store user's voted chips
+        let votedChips = JSON.parse(localStorage.getItem('votedBizarreChips')) || [];
 
-        // Add click handlers to vote buttons
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const card = button.closest('.chip-card');
-                const id = card.dataset.id;
-                votes[id]++;
-                
-                // Update display
-                card.querySelector('.votes-count span').textContent = votes[id];
-                
-                // Save to localStorage
-                localStorage.setItem('bizarreVotes', JSON.stringify(votes));
+        // Update vote bars on page load
+        function updateVoteBars() {
+            const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
+            if (totalVotes > 0) {
+                Object.keys(voteCounts).forEach(chip => {
+                    const percentage = (voteCounts[chip] / totalVotes) * 100;
+                    const bar = document.getElementById(`${chip}-bar`);
+                    if (bar) {
+                        bar.style.width = `${percentage}%`;
+                    }
+                });
+            }
+        }
+
+        // Show vote count for a specific chip
+        function showVoteCount(chip) {
+            const voteCount = document.getElementById(`${chip}-votes`).closest('.votes-count');
+            if (voteCount) {
+                voteCount.classList.add('visible');
+            }
+        }
+
+        // Update vote buttons based on voted chips
+        function updateVoteButtons() {
+            const buttons = document.querySelectorAll('.vote-button');
+            buttons.forEach(button => {
+                const chip = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (votedChips.includes(chip)) {
+                    button.textContent = 'Voted!';
+                    button.classList.add('voted');
+                    showVoteCount(chip);
+                } else {
+                    button.textContent = 'Vote Now';
+                    button.classList.remove('voted');
+                }
             });
+        }
+
+        // Vote function
+        function vote(chip) {
+            // Toggle vote for the chip
+            if (votedChips.includes(chip)) {
+                // Remove vote only if count is greater than 0
+                if (voteCounts[chip] > 0) {
+                    voteCounts[chip]--;
+                    votedChips = votedChips.filter(c => c !== chip);
+                    localStorage.setItem(`bizarre-${chip}-votes`, voteCounts[chip]);
+                }
+            } else {
+                // Add vote
+                voteCounts[chip]++;
+                votedChips.push(chip);
+                localStorage.setItem(`bizarre-${chip}-votes`, voteCounts[chip]);
+                showVoteCount(chip);
+            }
+            
+            // Save voted chips to localStorage
+            localStorage.setItem('votedBizarreChips', JSON.stringify(votedChips));
+            
+            // Update vote count display immediately
+            const voteCountElement = document.getElementById(`${chip}-votes`);
+            if (voteCountElement) {
+                voteCountElement.textContent = voteCounts[chip];
+            }
+            
+            updateVoteBars();
+            updateVoteButtons();
+        }
+
+        // Initialize submitted stories from localStorage
+        let submittedChips = JSON.parse(localStorage.getItem('bizarre-stories')) || [];
+
+        // Display submitted stories
+        function displaySubmittedChips() {
+            const container = document.getElementById('submitted-chips');
+            if (!container) return;
+            
+            container.innerHTML = submittedChips.map(chip => `
+                <div class="comment">
+                    <h3>${chip.chipName}</h3>
+                    <p><strong>Submitted by:</strong> ${chip.submitterName}</p>
+                    <p><strong>First tried:</strong> ${chip.year}</p>
+                    <p><strong>What makes it bizarre:</strong> ${chip.reason}</p>
+                    <p><strong>Reaction:</strong> ${chip.memory}</p>
+                    <p class="comment-date">Submitted on: ${chip.date}</p>
+                </div>
+            `).join('');
+        }
+
+        // Handle story submission
+        function submitChipFlop(event) {
+            event.preventDefault();
+            
+            const chipName = document.getElementById('chip-name').value;
+            const submitterName = document.getElementById('submitter-name').value;
+            const chipYear = document.getElementById('comment-year').value;
+            const chipReason = document.getElementById('comment-reason').value;
+            const chipMemory = document.getElementById('comment-memory').value;
+            
+            if (!chipName || !submitterName || !chipYear || !chipReason || !chipMemory) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const newChip = {
+                chipName: chipName,
+                submitterName: submitterName,
+                year: chipYear,
+                reason: chipReason,
+                memory: chipMemory,
+                date: new Date().toLocaleDateString()
+            };
+            
+            submittedChips.push(newChip);
+            localStorage.setItem('bizarre-stories', JSON.stringify(submittedChips));
+            
+            // Update display
+            displaySubmittedChips();
+            
+            // Clear form
+            event.target.reset();
+            alert('Thank you for sharing your bizarre chip experience!');
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateVoteBars();
+            updateVoteButtons();
+            
+            // Initialize submit form
+            const submitForm = document.querySelector('.comment-form');
+            if (submitForm) {
+                submitForm.addEventListener('submit', submitChipFlop);
+            }
+            
+            // Display submitted stories
+            displaySubmittedChips();
         });
     </script>
 </body>

@@ -3,216 +3,609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Champion Chip Flavors</title>
+    <title>Champion Chips - The Best of the Best!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #4CAF50;
+            --secondary: #FFC107;
+            --dark: #333;
+            --light: #f5f5f5;
+            --accent: #2196F3;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../assets/bg2.webp);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--dark);
+            min-height: 100vh;
         }
 
         header {
-            background-color: rgb(255, 217, 0);
+            background-color: var(--primary);
             padding: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .back-button-container {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .back-button {
-            color: purple;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            color: var(--light);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            border: 2px solid purple;
-            padding: 8px 16px;
-            border-radius: 6px;
+            border: 2px solid var(--light);
+            border-radius: 4px;
             transition: all 0.3s ease;
-            background-color: rgb(255, 217, 0);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .back-button:hover {
-            background-color: purple;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(128, 0, 128, 0.2);
+            background-color: var(--light);
+            color: var(--primary);
         }
-
-        main {
+        
+        .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 2rem auto;
             padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
         }
-
-        .voting-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
+        
         h1 {
-            color: #4CAF50;
-            font-size: 3rem;
-            margin-bottom: 2rem;
             text-align: center;
+            color: var(--primary);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        .voting-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .chip-card {
             border: 1px solid #ddd;
-            padding: 1rem;
             border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
             background-color: white;
-            transition: transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .chip-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-
-        .chip-info {
-            margin-top: 1rem;
+        
+        .chip-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
         }
-
-        .chip-info h2 {
-            color: #4CAF50;
+        
+        .chip-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        
+        .chip-content {
+            padding: 1.5rem;
+        }
+        
+        .chip-name {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--dark);
+        }
+        
+        .chip-brand {
+            font-size: 1.1rem;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
-        .chip-info p {
+        .chip-description {
             color: #666;
             margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .chip-flavor {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .votes {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .votes-count {
+            font-weight: bold;
+            margin-left: 0.5rem;
+            color: var(--dark);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .votes-count.visible {
+            opacity: 1;
+        }
+        
+        .vote-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 0.5rem 0 1rem 0;
+            position: relative;
+        }
+        
+        .vote-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0;
+            transition: width 0.3s ease;
         }
 
         .vote-button {
-            background-color: #4CAF50;
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--accent);
             color: white;
             border: none;
-            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
 
         .vote-button:hover {
-            background-color: #45a049;
+            background-color: #0b7dda;
         }
-
-        .votes-count {
+        
+        .vote-button.voted {
+            background-color: #4CAF50;
+        }
+        
+        .rank-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-weight: bold;
-            color: #4CAF50;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-
-        /* Media query for responsive design */
+        
+        .comment-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        .comment-form {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .submit-button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #388E3C;
+        }
+        
+        .comments-container {
+            margin-top: 2rem;
+        }
+        
+        .comment {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .comment h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .comment p {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        
+        .comment-date {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+        
         @media (max-width: 768px) {
-            header {
-                height: auto;
-                padding: 10px;
-                flex-direction: column;
+            .container {
+                margin: 1rem;
+                padding: 1rem;
             }
-
-            .logo-container {
-                margin: 0 auto;
+            
+            h1 {
+                font-size: 2rem;
             }
-
-            main {
-                margin-top: 160px; /* Adjust based on header height in mobile view */
+            
+            .grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="back-button-container">
-        <a href="../index.html" class="back-button">← Back To Home</a>
+    <header>
+        <a href="../index.html" class="back-button">← Back to Home</a>
+    </header>
+
+    <div class="container">
+        <h1>🏆 Champion Chips 🏆</h1>
+        <div class="intro">
+            Discover the world's most exceptional chips that have earned their place at the top! 
+            These champions represent the perfect blend of flavor, texture, and innovation in the snack world.
+        </div>
+
+        <div class="grid">
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/champion images/haitai.png" alt="Haitai Honey Butter Chip">
+                    <div class="rank-badge">#1</div>
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Honey Butter Chip</h2>
+                    <div class="chip-brand">Haitai</div>
+                    <div class="chip-flavor">White Cheese</div>
+                    <p class="chip-description">A Korean chip combining honey sweetness, butter savoriness, and rich white cheese flavor.</p>
+                    <div class="votes">
+                        <span class="votes-count" id="champion-1-votes">0</span> votes
+                    </div>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="champion-1-bar" style="width: 0%"></div>
+                    </div>
+                    <button class="vote-button" onclick="vote('1')">Vote Now</button>
+                </div>
     </div>
 
-    <main>
-        <div class="voting-container">
-            <h1>Champion Chip Flavors</h1>
-            <p>Vote for your favorite and most popular chip flavors!</p>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/champion images/tasto.png" alt="Tasto Salted Egg Yolk Potato Chips">
+                    <div class="rank-badge">#2</div>
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Salted Egg Yolk Potato Chips</h2>
+                    <div class="chip-brand">Tasto</div>
+                    <div class="chip-flavor">Salted Egg Yolk</div>
+                    <p class="chip-description">Thai-origin chip with a rich salted egg yolk taste and crispy texture.</p>
+                    <div class="votes">
+                        <span class="votes-count" id="champion-2-votes">0</span> votes
+                    </div>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="champion-2-bar" style="width: 0%"></div>
+                    </div>
+                    <button class="vote-button" onclick="vote('2')">Vote Now</button>
+                </div>
+            </div>
 
-            <div class="voting-grid">
-                <div class="chip-card" data-id="1">
-                    <h2>Lay's Classic</h2>
-                    <p>The timeless original flavor that started it all</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/champion images/lays.avif" alt="Lay's Classic Original Potato Chips">
+                    <div class="rank-badge">#3</div>
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Classic Original Potato Chips</h2>
+                    <div class="chip-brand">Lay's</div>
+                    <div class="chip-flavor">Original</div>
+                    <p class="chip-description">A global favorite for its simple, pure potato flavor and crunch.</p>
+                    <div class="votes">
+                        <span class="votes-count" id="champion-3-votes">0</span> votes
+                    </div>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="champion-3-bar" style="width: 0%"></div>
+                    </div>
+                    <button class="vote-button" onclick="vote('3')">Vote Now</button>
                     </div>
                 </div>
 
-                <div class="chip-card" data-id="2">
-                    <h2>Doritos Nacho Cheese</h2>
-                    <p>The iconic cheesy flavor loved by millions</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/champion images/calbee.jpg" alt="Calbee Jagariko">
+                    <div class="rank-badge">#4</div>
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Jagariko</h2>
+                    <div class="chip-brand">Calbee</div>
+                    <div class="chip-flavor">Lightly Salted</div>
+                    <p class="chip-description">Made with Hokkaido potatoes and Okhotsk sea salt, resembling freshly fried fries in texture.</p>
+                    <div class="votes">
+                        <span class="votes-count" id="champion-4-votes">0</span> votes
+                    </div>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="champion-4-bar" style="width: 0%"></div>
+                    </div>
+                    <button class="vote-button" onclick="vote('4')">Vote Now</button>
                     </div>
                 </div>
 
-                <div class="chip-card" data-id="3">
-                    <h2>Pringles Original</h2>
-                    <p>The perfect stack of crispy goodness</p>
-                    <div class="chip-info">
-                        <p class="votes-count">Votes: <span>0</span></p>
-                        <button class="vote-button">Vote</button>
+            <div class="chip-card">
+                <div class="chip-image">
+                    <img src="../assets/champion images/pring.jpg" alt="Pringles Potato Crisps">
+                    <div class="rank-badge">#5</div>
+                </div>
+                <div class="chip-content">
+                    <h2 class="chip-name">Potato Crisps</h2>
+                    <div class="chip-brand">Pringles</div>
+                    <div class="chip-flavor">Sour Cream & Onion</div>
+                    <p class="chip-description">Iconic stackable chips with a tangy sour cream and onion flavor, loved for their crunch and shape.</p>
+                    <div class="votes">
+                        <span class="votes-count" id="champion-5-votes">0</span> votes
                     </div>
+                    <div class="vote-bar">
+                        <div class="vote-fill" id="champion-5-bar" style="width: 0%"></div>
+                    </div>
+                    <button class="vote-button" onclick="vote('5')">Vote Now</button>
                 </div>
             </div>
         </div>
-    </main>
 
-    <script>
-        // Initialize votes from localStorage or default to 0
-        const votes = JSON.parse(localStorage.getItem('championVotes')) || {
-            '1': 0,
-            '2': 0,
-            '3': 0
-        };
-
-        // Update initial vote counts
-        document.querySelectorAll('.chip-card').forEach(card => {
-            const id = card.dataset.id;
-            card.querySelector('.votes-count span').textContent = votes[id];
-        });
-
-        // Add click handlers to vote buttons
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const card = button.closest('.chip-card');
-                const id = card.dataset.id;
-                votes[id]++;
+        <div class="comment-section">
+            <h2>Submit Your Champion Story</h2>
+            <p>Have a great experience with these champion chips? Tell us about it!</p>
+            
+            <form class="comment-form">
+                <div class="form-group">
+                    <label for="chip-name">Chip's Name</label>
+                    <input type="text" id="chip-name" class="form-control" placeholder="e.g. Doritos Cool Ranch" required>
+                </div>
                 
-                // Update display
-                card.querySelector('.votes-count span').textContent = votes[id];
+                <div class="form-group">
+                    <label for="submitter-name">Your Name</label>
+                    <input type="text" id="submitter-name" class="form-control" placeholder="e.g. John Smith" required>
+                </div>
                 
-                // Save to localStorage
-                localStorage.setItem('championVotes', JSON.stringify(votes));
+                <div class="form-group">
+                    <label for="comment-year">When Did You First Try It?</label>
+                    <input type="text" id="comment-year" class="form-control" placeholder="e.g. Early 2020s" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment-reason">Why Is It a Champion?</label>
+                    <textarea id="comment-reason" class="form-control" rows="4" placeholder="Tell us what makes this chip exceptional..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment-memory">Your Memory</label>
+                    <textarea id="comment-memory" class="form-control" rows="4" placeholder="Share your personal memory or experience with this chip..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-button">Submit Story</button>
+            </form>
+
+            <div id="submitted-chips" class="submitted-chips">
+                <h3>Recent Stories</h3>
+                <!-- Submitted stories will be displayed here -->
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // Initialize vote counts from localStorage or set to initial values
+    const voteCounts = {
+        '1': Math.max(0, parseInt(localStorage.getItem('champion-1-votes')) || 0),
+        '2': Math.max(0, parseInt(localStorage.getItem('champion-2-votes')) || 0),
+        '3': Math.max(0, parseInt(localStorage.getItem('champion-3-votes')) || 0),
+        '4': Math.max(0, parseInt(localStorage.getItem('champion-4-votes')) || 0),
+        '5': Math.max(0, parseInt(localStorage.getItem('champion-5-votes')) || 0)
+    };
+
+    // Store user's voted chips
+    let votedChips = JSON.parse(localStorage.getItem('votedChampionChips')) || [];
+
+    // Update vote bars on page load
+    function updateVoteBars() {
+        const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
+        if (totalVotes > 0) {
+            Object.keys(voteCounts).forEach(chip => {
+                const percentage = (voteCounts[chip] / totalVotes) * 100;
+                const bar = document.getElementById(`champion-${chip}-bar`);
+                if (bar) {
+                    bar.style.width = `${percentage}%`;
+                }
             });
+        }
+    }
+
+    // Show vote count for a specific chip
+    function showVoteCount(chip) {
+        const voteCount = document.getElementById(`champion-${chip}-votes`);
+        if (voteCount) {
+            voteCount.classList.add('visible');
+        }
+    }
+
+    // Update vote buttons based on voted chips
+    function updateVoteButtons() {
+        const buttons = document.querySelectorAll('.vote-button');
+        buttons.forEach(button => {
+            const chip = button.getAttribute('onclick').match(/vote\('(\d+)'\)/)[1];
+            if (votedChips.includes(chip)) {
+                button.textContent = 'Voted!';
+                button.classList.add('voted');
+                showVoteCount(chip);
+            } else {
+                button.textContent = 'Vote Now';
+                button.classList.remove('voted');
+            }
+        });
+    }
+
+    // Vote function
+    function vote(chip) {
+        // Toggle vote for the chip
+        if (votedChips.includes(chip)) {
+            // Remove vote only if count is greater than 0
+            if (voteCounts[chip] > 0) {
+                voteCounts[chip]--;
+                votedChips = votedChips.filter(c => c !== chip);
+                localStorage.setItem(`champion-${chip}-votes`, voteCounts[chip]);
+            }
+        } else {
+            // Add vote
+            voteCounts[chip]++;
+            votedChips.push(chip);
+            localStorage.setItem(`champion-${chip}-votes`, voteCounts[chip]);
+            showVoteCount(chip);
+        }
+        
+        // Save voted chips to localStorage
+        localStorage.setItem('votedChampionChips', JSON.stringify(votedChips));
+        
+        // Update vote count display immediately
+        const voteCountElement = document.getElementById(`champion-${chip}-votes`);
+        if (voteCountElement) {
+            voteCountElement.textContent = voteCounts[chip];
+        }
+        
+        updateVoteBars();
+        updateVoteButtons();
+    }
+
+    // Initialize submitted stories from localStorage
+    let submittedChips = JSON.parse(localStorage.getItem('champion-stories')) || [];
+
+    // Display submitted stories
+    function displaySubmittedChips() {
+        const container = document.getElementById('submitted-chips');
+        if (!container) return;
+        
+        container.innerHTML = submittedChips.map(chip => `
+            <div class="comment">
+                <h3>${chip.chipName}</h3>
+                <p><strong>Submitted by:</strong> ${chip.submitterName}</p>
+                <p><strong>First tried:</strong> ${chip.year}</p>
+                <p><strong>Why it's a champion:</strong> ${chip.reason}</p>
+                <p><strong>Memory:</strong> ${chip.memory}</p>
+                <p class="comment-date">Submitted on: ${chip.date}</p>
+            </div>
+        `).join('');
+    }
+
+    // Handle story submission
+    function submitChipFlop(event) {
+        event.preventDefault();
+        
+        const chipName = document.getElementById('chip-name').value;
+        const submitterName = document.getElementById('submitter-name').value;
+        const chipYear = document.getElementById('comment-year').value;
+        const chipReason = document.getElementById('comment-reason').value;
+        const chipMemory = document.getElementById('comment-memory').value;
+        
+        if (!chipName || !submitterName || !chipYear || !chipReason || !chipMemory) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        const newChip = {
+            chipName: chipName,
+            submitterName: submitterName,
+            year: chipYear,
+            reason: chipReason,
+            memory: chipMemory,
+            date: new Date().toLocaleDateString()
+        };
+        
+        submittedChips.push(newChip);
+        localStorage.setItem('champion-stories', JSON.stringify(submittedChips));
+        
+        // Update display
+        displaySubmittedChips();
+        
+        // Clear form
+        event.target.reset();
+        alert('Thank you for sharing your champion story!');
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+        updateVoteBars();
+        updateVoteButtons();
+        
+        // Initialize submit form
+        const submitForm = document.querySelector('.comment-form');
+        if (submitForm) {
+            submitForm.addEventListener('submit', submitChipFlop);
+        }
+        
+        // Display submitted stories
+        displaySubmittedChips();
         });
     </script>
-</body>
 </html>

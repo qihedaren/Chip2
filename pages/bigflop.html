@@ -19,6 +19,12 @@
       padding: 0;
       background-color: #ffeb3b;
       color: var(--dark);
+      background-image: url('../assets/bg2.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
     }
     
         header {
@@ -125,10 +131,16 @@
       margin-bottom: 1rem;
     }
     
-    .vote-count {
+    .votes-count {
       font-weight: bold;
       margin-left: 0.5rem;
       color: var(--dark);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .votes-count.visible {
+      opacity: 1;
     }
     
     .vote-bar {
@@ -364,12 +376,12 @@
             <h3 class="chip-name">Doritos 3D Crunch</h3>
             <p class="chip-description">A failed attempt to bring back the beloved 3D Doritos with a new recipe that just didn't measure up.</p>
             <div class="votes">
-              <span class="vote-count" id="doritos-votes">0</span> votes
+              <span class="votes-count" id="bigflop-1-votes">0</span> votes
             </div>
             <div class="vote-bar">
-              <div class="vote-fill" id="doritos-bar" style="width: 0%"></div>
+              <div class="vote-fill" id="bigflop-1-bar" style="width: 0%"></div>
             </div>
-            <button class="vote-button" onclick="vote('doritos')">Vote</button>
+            <button class="vote-button" onclick="vote('1')">Vote Now</button>
           </div>
         </div>
         
@@ -381,12 +393,12 @@
             <h3 class="chip-name">Lay's Limon</h3>
             <p class="chip-description">A controversial flavor that divided fans with its intense citrus taste.</p>
             <div class="votes">
-              <span class="vote-count" id="lays-votes">0</span> votes
+              <span class="votes-count" id="bigflop-2-votes">0</span> votes
             </div>
             <div class="vote-bar">
-              <div class="vote-fill" id="lays-bar" style="width: 0%"></div>
+              <div class="vote-fill" id="bigflop-2-bar" style="width: 0%"></div>
             </div>
-            <button class="vote-button" onclick="vote('lays')">Vote</button>
+            <button class="vote-button" onclick="vote('2')">Vote Now</button>
           </div>
         </div>
         
@@ -398,12 +410,12 @@
             <h3 class="chip-name">Pringles Rice</h3>
             <p class="chip-description">An attempt to create a rice-based version that failed to capture the classic Pringles magic.</p>
             <div class="votes">
-              <span class="vote-count" id="pringles-votes">0</span> votes
+              <span class="votes-count" id="bigflop-3-votes">0</span> votes
             </div>
             <div class="vote-bar">
-              <div class="vote-fill" id="pringles-bar" style="width: 0%"></div>
+              <div class="vote-fill" id="bigflop-3-bar" style="width: 0%"></div>
             </div>
-            <button class="vote-button" onclick="vote('pringles')">Vote</button>
+            <button class="vote-button" onclick="vote('3')">Vote Now</button>
           </div>
         </div>
         
@@ -415,12 +427,12 @@
             <h3 class="chip-name">Tato Skins</h3>
             <p class="chip-description">A short-lived product that tried to combine potato skins with chips but didn't quite work.</p>
             <div class="votes">
-              <span class="vote-count" id="tato-votes">0</span> votes
+              <span class="votes-count" id="bigflop-4-votes">0</span> votes
             </div>
             <div class="vote-bar">
-              <div class="vote-fill" id="tato-bar" style="width: 0%"></div>
+              <div class="vote-fill" id="bigflop-4-bar" style="width: 0%"></div>
             </div>
-            <button class="vote-button" onclick="vote('tato')">Vote</button>
+            <button class="vote-button" onclick="vote('4')">Vote Now</button>
           </div>
         </div>
         
@@ -432,12 +444,12 @@
             <h3 class="chip-name">Cheetos Checkers</h3>
             <p class="chip-description">A board game-inspired snack that didn't quite capture the fun of either activity.</p>
             <div class="votes">
-              <span class="vote-count" id="cheetos-votes">0</span> votes
+              <span class="votes-count" id="bigflop-5-votes">0</span> votes
             </div>
             <div class="vote-bar">
-              <div class="vote-fill" id="cheetos-bar" style="width: 0%"></div>
+              <div class="vote-fill" id="bigflop-5-bar" style="width: 0%"></div>
             </div>
-            <button class="vote-button" onclick="vote('cheetos')">Vote</button>
+            <button class="vote-button" onclick="vote('5')">Vote Now</button>
           </div>
         </div>
         
@@ -449,12 +461,12 @@
             <h3 class="chip-name">WOW! Chips</h3>
             <p class="chip-description">A low-fat version that sacrificed taste for health benefits, leading to disappointing sales.</p>
             <div class="votes">
-              <span class="vote-count" id="wow-votes">0</span> votes
+              <span class="votes-count" id="bigflop-6-votes">0</span> votes
             </div>
             <div class="vote-bar">
-              <div class="vote-fill" id="wow-bar" style="width: 0%"></div>
+              <div class="vote-fill" id="bigflop-6-bar" style="width: 0%"></div>
             </div>
-            <button class="vote-button" onclick="vote('wow')">Vote</button>
+            <button class="vote-button" onclick="vote('6')">Vote Now</button>
           </div>
         </div>
       </div>
@@ -473,12 +485,12 @@
               <p class="chip-description">Once popular, this potato chip brand couldn't maintain momentum and faded into snack history.</p>
               <div class="votes">
                 <span>Votes:</span>
-                <span class="vote-count" id="tato-votes">4</span>
+                <span class="votes-count" id="bigflop-7-votes">4</span>
               </div>
               <div class="vote-bar">
-                <div class="vote-fill" id="tato-bar" style="width: 0%"></div>
+                <div class="vote-fill" id="bigflop-7-bar" style="width: 0%"></div>
               </div>
-              <button class="vote-button" onclick="vote('tato')">Vote</button>
+              <button class="vote-button" onclick="vote('7')">Vote Now</button>
             </div>
           </div>
         </div>
@@ -496,12 +508,12 @@
               <p class="chip-description">The grid pattern couldn't compete with classic Cheetos. Launched in the 90s and quietly disappeared.</p>
               <div class="votes">
                 <span>Votes:</span>
-                <span class="vote-count" id="cheetos-votes">4</span>
+                <span class="votes-count" id="bigflop-8-votes">4</span>
               </div>
               <div class="vote-bar">
-                <div class="vote-fill" id="cheetos-bar" style="width: 0%"></div>
+                <div class="vote-fill" id="bigflop-8-bar" style="width: 0%"></div>
               </div>
-              <button class="vote-button" onclick="vote('cheetos')">Vote</button>
+              <button class="vote-button" onclick="vote('8')">Vote Now</button>
             </div>
           </div>
           
@@ -514,12 +526,12 @@
               <p class="chip-description">Olestra-based chips that caused digestive issues with infamous "may cause anal leakage" warning label.</p>
               <div class="votes">
                 <span>Votes:</span>
-                <span class="vote-count" id="wow-votes">4</span>
+                <span class="votes-count" id="bigflop-9-votes">4</span>
               </div>
               <div class="vote-bar">
-                <div class="vote-fill" id="wow-bar" style="width: 0%"></div>
+                <div class="vote-fill" id="bigflop-9-bar" style="width: 0%"></div>
               </div>
-              <button class="vote-button" onclick="vote('wow')">Vote</button>
+              <button class="vote-button" onclick="vote('9')">Vote Now</button>
             </div>
           </div>
         </div>
@@ -537,12 +549,12 @@
               <p class="chip-description">Too sour and artificial tasting. Launched in 2002 and quickly disappeared from shelves.</p>
               <div class="votes">
                 <span>Votes:</span>
-                <span class="vote-count" id="lays-votes">7</span>
+                <span class="votes-count" id="bigflop-10-votes">7</span>
               </div>
               <div class="vote-bar">
-                <div class="vote-fill" id="lays-bar" style="width: 0%"></div>
+                <div class="vote-fill" id="bigflop-10-bar" style="width: 0%"></div>
               </div>
-              <button class="vote-button" onclick="vote('lays')">Vote</button>
+              <button class="vote-button" onclick="vote('10')">Vote Now</button>
             </div>
           </div>
           
@@ -555,12 +567,12 @@
               <p class="chip-description">Failed to capture the original Pringles magic. The texture was off and the flavors didn't resonate with fans.</p>
               <div class="votes">
                 <span>Votes:</span>
-                <span class="vote-count" id="pringles-votes">2</span>
+                <span class="votes-count" id="bigflop-11-votes">2</span>
               </div>
               <div class="vote-bar">
-                <div class="vote-fill" id="pringles-bar" style="width: 0%"></div>
+                <div class="vote-fill" id="bigflop-11-bar" style="width: 0%"></div>
               </div>
-              <button class="vote-button" onclick="vote('pringles')">Vote</button>
+              <button class="vote-button" onclick="vote('11')">Vote Now</button>
             </div>
           </div>
           
@@ -573,12 +585,12 @@
               <p class="chip-description">Discontinued due to poor sales despite innovative shape. The 2000s version failed to capture consumer interest.</p>
               <div class="votes">
                 <span>Votes:</span>
-                <span class="vote-count" id="doritos-votes">3</span>
+                <span class="votes-count" id="bigflop-12-votes">3</span>
               </div>
               <div class="vote-bar">
-                <div class="vote-fill" id="doritos-bar" style="width: 0%"></div>
+                <div class="vote-fill" id="bigflop-12-bar" style="width: 0%"></div>
               </div>
-              <button class="vote-button" onclick="vote('doritos')">Vote</button>
+              <button class="vote-button" onclick="vote('12')">Vote Now</button>
             </div>
           </div>
         </div>
@@ -633,6 +645,11 @@
         </div>
         
         <div class="form-group">
+          <label for="submitter-name">Your Name</label>
+          <input type="text" id="submitter-name" class="form-control" placeholder="e.g. John Smith" required>
+        </div>
+        
+        <div class="form-group">
           <label for="chip-year">Approximate Year/Decade</label>
           <input type="text" id="chip-year" class="form-control" placeholder="e.g. Late 90s" required>
         </div>
@@ -664,83 +681,83 @@
   <script>
     // Initialize vote counts from localStorage or set to initial values
     const voteCounts = {
-      doritos: parseInt(localStorage.getItem('doritos-votes')) || 3,
-      lays: parseInt(localStorage.getItem('lays-votes')) || 7,
-      pringles: parseInt(localStorage.getItem('pringles-votes')) || 2,
-      tato: parseInt(localStorage.getItem('tato-votes')) || 4,
-      cheetos: parseInt(localStorage.getItem('cheetos-votes')) || 4,
-      wow: parseInt(localStorage.getItem('wow-votes')) || 4
+        '1': Math.max(0, parseInt(localStorage.getItem('bigflop-1-votes')) || 0),
+        '2': Math.max(0, parseInt(localStorage.getItem('bigflop-2-votes')) || 0),
+        '3': Math.max(0, parseInt(localStorage.getItem('bigflop-3-votes')) || 0),
+        '4': Math.max(0, parseInt(localStorage.getItem('bigflop-4-votes')) || 0),
+        '5': Math.max(0, parseInt(localStorage.getItem('bigflop-5-votes')) || 0)
     };
 
-    // Store user's last vote
-    let lastVote = localStorage.getItem('lastVote') || null;
-
-    // Initialize submitted chips from localStorage or set to empty array
-    let submittedChips = JSON.parse(localStorage.getItem('submittedChips')) || [];
+    // Store user's voted chips
+    let votedChips = JSON.parse(localStorage.getItem('votedBigFlopChips')) || [];
 
     // Update vote bars on page load
     function updateVoteBars() {
-      const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
-      if (totalVotes > 0) {
-        Object.keys(voteCounts).forEach(chip => {
-          const percentage = (voteCounts[chip] / totalVotes) * 100;
-          const bars = document.querySelectorAll(`#${chip}-bar`);
-          bars.forEach(bar => {
-            bar.style.width = `${percentage}%`;
-          });
-        });
-      }
+        const totalVotes = Object.values(voteCounts).reduce((a, b) => a + b, 0);
+        if (totalVotes > 0) {
+            Object.keys(voteCounts).forEach(chip => {
+                const percentage = (voteCounts[chip] / totalVotes) * 100;
+                const bar = document.getElementById(`bigflop-${chip}-bar`);
+                if (bar) {
+                    bar.style.width = `${percentage}%`;
+                }
+            });
+        }
     }
 
-    // Update vote buttons based on last vote
-    function updateVoteButtons() {
-      const buttons = document.querySelectorAll('.vote-button');
-      buttons.forEach(button => {
-        const chip = button.getAttribute('onclick').match(/'([^']+)'/)[1];
-        if (chip === lastVote) {
-          button.textContent = 'Voted';
-          button.style.backgroundColor = '#4CAF50';
-          button.style.cursor = 'pointer';
-        } else {
-          button.textContent = 'Vote';
-          button.style.backgroundColor = 'var(--accent)';
-          button.style.cursor = 'pointer';
+    // Show vote count for a specific chip
+    function showVoteCount(chip) {
+        const voteCount = document.getElementById(`bigflop-${chip}-votes`);
+        if (voteCount) {
+            voteCount.classList.add('visible');
         }
-      });
+    }
+
+    // Update vote buttons based on voted chips
+    function updateVoteButtons() {
+        const buttons = document.querySelectorAll('.vote-button');
+        buttons.forEach(button => {
+            const chip = button.getAttribute('onclick').match(/vote\('(\d+)'\)/)[1];
+            if (votedChips.includes(chip)) {
+                button.textContent = 'Voted!';
+                button.classList.add('voted');
+                showVoteCount(chip);
+            } else {
+                button.textContent = 'Vote Now';
+                button.classList.remove('voted');
+            }
+        });
     }
 
     // Vote function
     function vote(chip) {
-      // If clicking the same chip again, remove the vote
-      if (chip === lastVote) {
-        voteCounts[chip]--;
-        localStorage.setItem(`${chip}-votes`, voteCounts[chip]);
-        localStorage.removeItem('lastVote');
-        lastVote = null;
-      } else {
-        // If there was a previous vote, remove it
-        if (lastVote) {
-          voteCounts[lastVote]--;
-          localStorage.setItem(`${lastVote}-votes`, voteCounts[lastVote]);
+        // Toggle vote for the chip
+        if (votedChips.includes(chip)) {
+            // Remove vote only if count is greater than 0
+            if (voteCounts[chip] > 0) {
+                voteCounts[chip]--;
+                votedChips = votedChips.filter(c => c !== chip);
+                localStorage.setItem(`bigflop-${chip}-votes`, voteCounts[chip]);
+            }
+        } else {
+            // Add vote
+            voteCounts[chip]++;
+            votedChips.push(chip);
+            localStorage.setItem(`bigflop-${chip}-votes`, voteCounts[chip]);
+            showVoteCount(chip);
         }
         
-        // Add new vote
-        voteCounts[chip]++;
-        localStorage.setItem(`${chip}-votes`, voteCounts[chip]);
-        localStorage.setItem('lastVote', chip);
-        lastVote = chip;
-      }
-      
-      // Update display
-      Object.keys(voteCounts).forEach(chipKey => {
-        const voteCounts = document.querySelectorAll(`#${chipKey}-votes`);
-        voteCounts.forEach(count => {
-          count.textContent = voteCounts[chipKey];
-        });
-      });
-      
-      updateVoteBars();
-      updateVoteButtons();
+        // Save voted chips to localStorage
+        localStorage.setItem('votedBigFlopChips', JSON.stringify(votedChips));
+        
+        // Update vote count display immediately
+        const voteCountElement = document.getElementById(`bigflop-${chip}-votes`);
+        if (voteCountElement) {
+            voteCountElement.textContent = voteCounts[chip];
+        }
+        
+        updateVoteBars();
+        updateVoteButtons();
     }
 
     // Submit chip flop function
@@ -748,25 +765,24 @@
       event.preventDefault();
       
       const chipName = document.getElementById('chip-name').value;
+      const submitterName = document.getElementById('submitter-name').value;
       const chipYear = document.getElementById('chip-year').value;
       const chipDescription = document.getElementById('chip-description').value;
       const chipMemory = document.getElementById('chip-memory').value;
       
-      if (!chipName || !chipYear || !chipDescription || !chipMemory) {
+      if (!chipName || !submitterName || !chipYear || !chipDescription || !chipMemory) {
         alert('Please fill in all fields');
         return;
       }
       
       const newChip = {
         name: chipName,
+        submitterName: submitterName,
         year: chipYear,
         description: chipDescription,
         memory: chipMemory,
         date: new Date().toLocaleDateString()
       };
-      
-      submittedChips.push(newChip);
-      localStorage.setItem('submittedChips', JSON.stringify(submittedChips));
       
       // Update display
       displaySubmittedChips();
@@ -783,7 +799,9 @@
       
       container.innerHTML = submittedChips.map(chip => `
         <div class="submitted-chip">
-          <h3>${chip.name} (${chip.year})</h3>
+          <h3>${chip.name}</h3>
+          <p><strong>Submitted by:</strong> ${chip.submitterName}</p>
+          <p><strong>Year/Decade:</strong> ${chip.year}</p>
           <p><strong>Why it failed:</strong> ${chip.description}</p>
           <p><strong>Memory:</strong> ${chip.memory}</p>
           <p class="submission-date">Submitted on: ${chip.date}</p>
@@ -793,25 +811,17 @@
 
     // Initialize page
     document.addEventListener('DOMContentLoaded', () => {
-      // Update vote counts display
-      Object.keys(voteCounts).forEach(chip => {
-        const voteCounts = document.querySelectorAll(`#${chip}-votes`);
-        voteCounts.forEach(count => {
-          count.textContent = voteCounts[chip];
-        });
-      });
-      
-      updateVoteBars();
-      updateVoteButtons();
-      
-      // Initialize submit form
-      const submitForm = document.querySelector('.add-section form');
-      if (submitForm) {
-        submitForm.addEventListener('submit', submitChipFlop);
-      }
-      
-      // Display submitted chips
-      displaySubmittedChips();
+        updateVoteBars();
+        updateVoteButtons();
+        
+        // Initialize submit form
+        const submitForm = document.querySelector('.add-section form');
+        if (submitForm) {
+            submitForm.addEventListener('submit', submitChipFlop);
+        }
+        
+        // Display submitted chips
+        displaySubmittedChips();
     });
 
     // Tab switching function
