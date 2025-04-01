@@ -174,11 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle comment submission
     commentForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        e.stopPropagation();
+        
         const text = commentInput.value.trim();
-
         if (text) {
             const newComment = {
-                text,
+                text: text,
                 emoji: '',
                 timestamp: new Date().toISOString(),
                 upvotes: 0,
@@ -197,6 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             localStorage.setItem('comments', JSON.stringify(comments));
             displayComments();
+            // Scroll to the comment section
+            document.getElementById('comments').scrollIntoView({ behavior: 'smooth' });
         } catch (error) {
             console.error('Error saving comments:', error);
         }
