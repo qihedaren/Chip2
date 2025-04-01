@@ -35,10 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Load comments from localStorage
-    let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    let comments = [];
+    try {
+        const savedComments = localStorage.getItem('comments');
+        if (savedComments) {
+            comments = JSON.parse(savedComments);
+        }
+    } catch (error) {
+        console.error('Error loading comments:', error);
+        comments = [];
+    }
 
     function displayComments() {
         commentList.innerHTML = '';
+        
+        if (comments.length === 0) {
+            commentList.innerHTML = '<p style="text-align: center; color: #666;">No comments yet. Be the first to share your thoughts!</p>';
+            return;
+        }
 
         comments.forEach((comment, index) => {
             const li = document.createElement('li');
@@ -148,12 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Save and re-render
-    function saveAndRefresh() {
-        localStorage.setItem('comments', JSON.stringify(comments));
-        displayComments();
-    }
-
     // Handle emoji buttons
     emojiButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -169,18 +177,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = commentInput.value.trim();
 
         if (text) {
-            comments.unshift({
+            const newComment = {
                 text,
-                emoji: '', // Optional field
+                emoji: '',
                 timestamp: new Date().toISOString(),
                 upvotes: 0,
                 downvotes: 0,
                 replies: []
-            });
+            };
+            
+            comments.unshift(newComment);
             commentInput.value = '';
             saveAndRefresh();
         }
     });
+
+    // Save and re-render
+    function saveAndRefresh() {
+        try {
+            localStorage.setItem('comments', JSON.stringify(comments));
+            displayComments();
+        } catch (error) {
+            console.error('Error saving comments:', error);
+        }
+    }
 
     // Initial display
     displayComments();
