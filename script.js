@@ -198,8 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             localStorage.setItem('comments', JSON.stringify(comments));
             displayComments();
-            // Scroll to the comment section
-            document.getElementById('comments').scrollIntoView({ behavior: 'smooth' });
+            // Prevent page jumping by not scrolling
         } catch (error) {
             console.error('Error saving comments:', error);
         }
