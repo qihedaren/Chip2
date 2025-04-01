@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentList = document.getElementById('comment-list');
     const emojiButtons = document.querySelectorAll('.emoji-button');
 
+    // Helper function to escape HTML
+    function escapeHTML(str) {
+        return str.replace(/&/g, '&amp;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;')
+                  .replace(/'/g, '&#039;');
+    }
+
     // Load comments from localStorage
     let comments = JSON.parse(localStorage.getItem('comments')) || [];
 
@@ -15,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.className = 'comment-card';
             li.innerHTML = `
                 <div class="comment-content">
-                    ${comment.text}
+                    ${escapeHTML(comment.text)}
                     ${comment.emoji ? `<span style="font-size: 20px; margin-left: 5px;">${comment.emoji}</span>` : ''}
                 </div>
                 <div class="comment-actions">
@@ -35,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="replies">
                     ${comment.replies ? comment.replies.map(reply => `
                         <div class="comment-card" style="margin: 10px 0;">
-                            <div class="comment-content">${reply}</div>
+                            <div class="comment-content">${escapeHTML(reply)}</div>
                         </div>
                     `).join('') : ''}
                 </div>
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('comments', JSON.stringify(comments));
     }
 
-    // Function to handle voting
+    // Voting logic
     window.vote = (index, value) => {
         if (value === 1) {
             comments[index].upvotes = (comments[index].upvotes || 0) + 1;
@@ -59,17 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
         displayComments();
     };
 
-    // Function to toggle reply form
+    // Toggle reply form
     window.toggleReplyForm = (index) => {
         const replyForm = document.getElementById(`reply-form-${index}`);
         replyForm.classList.toggle('active');
     };
 
-    // Function to submit reply
+    // Submit a reply
     window.submitReply = (index) => {
         const replyInput = document.getElementById(`reply-input-${index}`);
         const replyText = replyInput.value.trim();
-        
+
         if (replyText) {
             if (!comments[index].replies) {
                 comments[index].replies = [];
@@ -81,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Function to delete comment
+    // Delete comment
     window.deleteComment = (index) => {
         comments.splice(index, 1);
         displayComments();
     };
 
-    // Handle emoji picker
+    // Handle emoji click
     emojiButtons.forEach(button => {
         button.addEventListener('click', () => {
             const emoji = button.dataset.emoji;
@@ -100,10 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
     commentForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const text = commentInput.value.trim();
-        
+
         if (text) {
             comments.unshift({
                 text,
+                emoji: '', // Optional if you want to store emoji separately
                 timestamp: new Date().toISOString(),
                 upvotes: 0,
                 downvotes: 0,
@@ -116,4 +126,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial display
     displayComments();
-}); 
+});
