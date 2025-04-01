@@ -4,6 +4,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentList = document.getElementById('comment-list');
     const emojiButtons = document.querySelectorAll('.emoji-button');
 
+    // Video loading handling
+    const videos = document.querySelectorAll('video');
+    const loadingIndicator = document.getElementById('video-loading');
+
+    videos.forEach(video => {
+        video.addEventListener('loadstart', () => {
+            if (loadingIndicator) loadingIndicator.style.display = 'block';
+        });
+
+        video.addEventListener('canplay', () => {
+            if (loadingIndicator) loadingIndicator.style.display = 'none';
+        });
+
+        video.addEventListener('error', (e) => {
+            console.error('Video loading error:', e);
+            if (loadingIndicator) {
+                loadingIndicator.innerHTML = '<p style="color: red;">Error loading video. Please try refreshing the page.</p>';
+            }
+        });
+    });
+
     // Escape HTML to avoid injection
     function escapeHTML(str) {
         return str.replace(/&/g, '&amp;')

@@ -370,7 +370,7 @@
             </ul>
 
             <h2>How Crisps Are Made – From Farm to Crunch</h2>
-            <video controls preload="metadata">
+            <video controls preload="metadata" poster="assets/images/lays_realistic.jpg">
                 <source src="assets/videos/how-crisps-are-made-compressed.mp4" type="video/mp4">
                 <source src="assets/videos/how-crisps-are-made.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -378,8 +378,12 @@
                     <br>1. Using a different browser
                     <br>2. Checking your internet connection
                     <br>3. Ensuring your browser supports MP4 video playback
+                    <br>4. Waiting a few moments for the video to load
                 </p>
             </video>
+            <div id="video-loading" style="display: none; text-align: center; margin-top: 10px;">
+                <p>Loading video... Please wait...</p>
+            </div>
         </section>
 
         <section id="comments">
